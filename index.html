@@ -7,37 +7,24 @@
 <title>СөзСурет</title>
 
 <style>
-*{
-  box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 body{
   margin:0;
-  font-family:Arial, sans-serif;
+  font-family:Arial,sans-serif;
   min-height:100vh;
   background:linear-gradient(180deg,#dff5ff 0%,#fff8dc 55%,#e9ffd9 100%);
   color:#27364b;
 }
 
 .page{
-  max-width:520px;
+  max-width:540px;
   margin:auto;
-  padding:25px 18px 50px;
+  padding:24px 16px 50px;
 }
 
-.screen{
-  display:none;
-}
-
-.screen.active{
-  display:block;
-}
-
-.center{
-  text-align:center;
-}
-
-/* Басты бет */
+.screen{display:none}
+.screen.active{display:block}
 
 .logo{
   background:white;
@@ -49,7 +36,9 @@ body{
 }
 
 .sky{
-  font-size:42px;
+  text-align:center;
+  font-size:43px;
+  margin-bottom:7px;
 }
 
 h1{
@@ -88,11 +77,6 @@ h1{
   font-weight:bold;
   cursor:pointer;
   box-shadow:0 7px 15px rgba(0,0,0,.09);
-  transition:.2s;
-}
-
-.menuButton:hover{
-  transform:translateY(-2px);
 }
 
 .menuButton small{
@@ -103,10 +87,10 @@ h1{
   color:#526170;
 }
 
-.learn{background:#fff1a8;}
-.find{background:#cfeeff;}
-.three{background:#e2d5ff;}
-.quiz{background:#d5f6c4;}
+.learn{background:#fff1a8}
+.find{background:#cfeeff}
+.three{background:#e2d5ff}
+.quiz{background:#d5f6c4}
 
 .method{
   margin-top:23px;
@@ -128,8 +112,6 @@ h1{
   color:#64748b;
   font-size:13px;
 }
-
-/* Үйренемін беті */
 
 .topbar{
   display:flex;
@@ -164,7 +146,7 @@ h1{
   color:#64748b;
 }
 
-.lessonCard{
+.card{
   background:white;
   border-radius:25px;
   padding:20px;
@@ -172,24 +154,11 @@ h1{
   box-shadow:0 8px 20px rgba(0,0,0,.08);
 }
 
-.lessonCard h3{
-  margin:0 0 8px;
-  font-size:23px;
-}
+.yellow{border-top:8px solid #ffd95a}
+.blue{border-top:8px solid #70c9ff}
+.purple{border-top:8px solid #b69cff}
 
-.yellow{
-  border-top:8px solid #ffd95a;
-}
-
-.blue{
-  border-top:8px solid #70c9ff;
-}
-
-.purple{
-  border-top:8px solid #b69cff;
-}
-
-.question{
+.questionTag{
   display:inline-block;
   margin:10px 0;
   padding:7px 12px;
@@ -215,46 +184,30 @@ h1{
 
 .answers{
   display:grid;
-  gap:8px;
-  margin-top:10px;
+  gap:9px;
+  margin-top:12px;
 }
 
 .answerButton{
   border:2px solid #e5e7eb;
   background:white;
   border-radius:15px;
-  padding:11px;
+  padding:12px;
   cursor:pointer;
   font-size:15px;
 }
 
-.answerButton:hover{
-  background:#f8fafc;
-}
-
 .feedback{
   min-height:24px;
-  margin-top:9px;
+  margin-top:12px;
   font-weight:bold;
+  line-height:1.5;
 }
 
-.correct{
-  color:#16803a;
-}
+.correct{color:#16803a}
+.wrong{color:#d33b3b}
 
-.wrong{
-  color:#d33b3b;
-}
-
-.nextBox{
-  text-align:center;
-  background:white;
-  padding:18px;
-  border-radius:22px;
-  margin-top:20px;
-}
-
-.homeButton{
+.mainButton{
   border:0;
   background:#6c4bd3;
   color:white;
@@ -265,9 +218,38 @@ h1{
   cursor:pointer;
 }
 
+.resultCard{
+  background:white;
+  text-align:center;
+  padding:30px 20px;
+  border-radius:28px;
+  margin-top:45px;
+  box-shadow:0 10px 30px rgba(0,0,0,.1);
+}
+
+.progressTrack{
+  height:11px;
+  background:#e5e7eb;
+  border-radius:20px;
+  overflow:hidden;
+  margin:15px 0 24px;
+}
+
+.progressBar{
+  height:100%;
+  background:#70c9ff;
+  transition:.3s;
+}
+
+.scoreRow{
+  display:flex;
+  justify-content:space-between;
+  font-weight:bold;
+}
+
 @media(max-width:420px){
-  h1{font-size:34px;}
-  .page{padding:18px 14px 40px;}
+  h1{font-size:34px}
+  .page{padding:18px 14px 40px}
 }
 </style>
 </head>
@@ -279,12 +261,10 @@ h1{
 <!-- БАСТЫ БЕТ -->
 <section id="home" class="screen active">
 
-  <div class="center sky">☀️ ☁️ 🌈</div>
+  <div class="sky">☀️ ☁️ 🌈</div>
 
   <div class="logo">
-
     <div>✨ 📖 ✨</div>
-
     <h1>СӨЗСУРЕТ</h1>
 
     <div class="subtitle">
@@ -295,7 +275,6 @@ h1{
     <div class="target">
       👧🧒 Бастауыш сынып оқушыларына арналған
     </div>
-
   </div>
 
   <div class="menu">
@@ -305,17 +284,17 @@ h1{
       <small>Эпитет, теңеу, кейіптеуді үйрен</small>
     </button>
 
-    <button class="menuButton find">
+    <button class="menuButton find" onclick="startFindGame()">
       🔎 &nbsp; КӨРКЕМ СӨЗДІ ТАП
       <small>Сөйлемнен көркем сөздерді ізде</small>
     </button>
 
-    <button class="menuButton three">
+    <button class="menuButton three" onclick="comingSoon('3С — Сөзді тірілт')">
       ✨ &nbsp; 3С — СӨЗДІ ТІРІЛТ
       <small>Сипатта • Салыстыр • Сөйлет</small>
     </button>
 
-    <button class="menuButton quiz">
+    <button class="menuButton quiz" onclick="comingSoon('Біліміңді сына')">
       🏆 &nbsp; БІЛІМІҢДІ СЫНА
       <small>Тапсырмаларды орындап, жұлдыз жина</small>
     </button>
@@ -323,17 +302,8 @@ h1{
   </div>
 
   <div class="method">
-
-    <div class="methodTitle">
-      ⭐ Біздің 3С әдісіміз
-    </div>
-
-    <b>
-      🎨 СИПАТТА →
-      🔎 САЛЫСТЫР →
-      💬 СӨЙЛЕТ
-    </b>
-
+    <div class="methodTitle">⭐ Біздің 3С әдісіміз</div>
+    <b>🎨 СИПАТТА → 🔎 САЛЫСТЫР → 💬 СӨЙЛЕТ</b>
   </div>
 
   <div class="footer">
@@ -347,31 +317,23 @@ h1{
 <section id="learnScreen" class="screen">
 
   <div class="topbar">
-
-    <button class="back" onclick="showScreen('home')">
-      ←
-    </button>
+    <button class="back" onclick="showScreen('home')">←</button>
 
     <div class="pageTitle">
       <h2>📖 ҮЙРЕНЕМІН</h2>
       <p>Көркем сөздің үш түрімен танысайық!</p>
     </div>
-
   </div>
 
-
-  <!-- ЭПИТЕТ -->
-
-  <div class="lessonCard yellow">
-
-    <h3>🎨 ЭПИТЕТ</h3>
+  <div class="card yellow">
+    <h2>🎨 ЭПИТЕТ</h2>
 
     <p>
-      <b>Эпитет</b> — заттың немесе құбылыстың
-      ерекше белгісін көркем көрсететін сөз.
+      <b>Эпитет</b> — заттың немесе құбылыстың ерекше белгісін
+      көркем көрсететін сөз.
     </p>
 
-    <div class="question">
+    <div class="questionTag">
       1С — СИПАТТА: «Қандай?»
     </div>
 
@@ -382,51 +344,28 @@ h1{
     </div>
 
     <div class="tryBox">
-
       <b>🎯 Орындап көр!</b>
-
-      <p>
-        «Күн» сөзін көркем сипаттайтын сөзді таңда.
-      </p>
+      <p>«Күн» сөзін көркем сипаттайтын сөзді таңда.</p>
 
       <div class="answers">
-
-        <button class="answerButton"
-        onclick="checkAnswer(this,true,'epFeedback')">
-          алтын
-        </button>
-
-        <button class="answerButton"
-        onclick="checkAnswer(this,false,'epFeedback')">
-          жүгіреді
-        </button>
-
-        <button class="answerButton"
-        onclick="checkAnswer(this,false,'epFeedback')">
-          мақтадай
-        </button>
-
+        <button class="answerButton" onclick="lessonAnswer(this,true,'epFeed')">алтын</button>
+        <button class="answerButton" onclick="lessonAnswer(this,false,'epFeed')">жүгіреді</button>
+        <button class="answerButton" onclick="lessonAnswer(this,false,'epFeed')">мақтадай</button>
       </div>
 
-      <div id="epFeedback" class="feedback"></div>
-
+      <div id="epFeed" class="feedback"></div>
     </div>
-
   </div>
 
 
-  <!-- ТЕҢЕУ -->
-
-  <div class="lessonCard blue">
-
-    <h3>🔎 ТЕҢЕУ</h3>
+  <div class="card blue">
+    <h2>🔎 ТЕҢЕУ</h2>
 
     <p>
-      <b>Теңеу</b> — бір нәрсені екінші нәрсеге
-      ұқсатып бейнелеу.
+      <b>Теңеу</b> — бір нәрсені екінші нәрсеге ұқсатып бейнелеу.
     </p>
 
-    <div class="question">
+    <div class="questionTag">
       2С — САЛЫСТЫР: «Неге ұқсайды?»
     </div>
 
@@ -437,52 +376,30 @@ h1{
     </div>
 
     <div class="tryBox">
-
       <b>🎯 Орындап көр!</b>
 
-      <p>
-        «Көл айнадай жарқырады».
-        Көл неге ұқсатылған?
-      </p>
+      <p>«Көл айнадай жарқырады». Көл неге ұқсатылған?</p>
 
       <div class="answers">
-
-        <button class="answerButton"
-        onclick="checkAnswer(this,false,'tenFeedback')">
-          күнге
-        </button>
-
-        <button class="answerButton"
-        onclick="checkAnswer(this,true,'tenFeedback')">
-          айнаға
-        </button>
-
-        <button class="answerButton"
-        onclick="checkAnswer(this,false,'tenFeedback')">
-          бұлтқа
-        </button>
-
+        <button class="answerButton" onclick="lessonAnswer(this,false,'tenFeed')">күнге</button>
+        <button class="answerButton" onclick="lessonAnswer(this,true,'tenFeed')">айнаға</button>
+        <button class="answerButton" onclick="lessonAnswer(this,false,'tenFeed')">бұлтқа</button>
       </div>
 
-      <div id="tenFeedback" class="feedback"></div>
-
+      <div id="tenFeed" class="feedback"></div>
     </div>
-
   </div>
 
 
-  <!-- КЕЙІПТЕУ -->
-
-  <div class="lessonCard purple">
-
-    <h3>✨ КЕЙІПТЕУ</h3>
+  <div class="card purple">
+    <h2>✨ КЕЙІПТЕУ</h2>
 
     <p>
-      <b>Кейіптеу</b> — табиғатты немесе жансыз
-      затты адам сияқты бейнелеу.
+      <b>Кейіптеу</b> — табиғатты немесе жансыз затты
+      адам сияқты бейнелеу.
     </p>
 
-    <div class="question">
+    <div class="questionTag">
       3С — СӨЙЛЕТ: «Адам сияқты не істейді?»
     </div>
 
@@ -493,55 +410,117 @@ h1{
     </div>
 
     <div class="tryBox">
-
       <b>🎯 Орындап көр!</b>
 
-      <p>
-        Қай сөйлемде жел адам сияқты әрекет етеді?
-      </p>
+      <p>Қай сөйлемде жел адам сияқты әрекет етеді?</p>
 
       <div class="answers">
-
-        <button class="answerButton"
-        onclick="checkAnswer(this,false,'keiFeedback')">
+        <button class="answerButton" onclick="lessonAnswer(this,false,'keiFeed')">
           Жел қатты соқты.
         </button>
 
-        <button class="answerButton"
-        onclick="checkAnswer(this,true,'keiFeedback')">
+        <button class="answerButton" onclick="lessonAnswer(this,true,'keiFeed')">
           Жел терезеге сыбырлады.
         </button>
 
-        <button class="answerButton"
-        onclick="checkAnswer(this,false,'keiFeedback')">
+        <button class="answerButton" onclick="lessonAnswer(this,false,'keiFeed')">
           Жел солтүстіктен соқты.
         </button>
-
       </div>
 
-      <div id="keiFeedback" class="feedback"></div>
+      <div id="keiFeed" class="feedback"></div>
+    </div>
+  </div>
 
+
+  <div class="card" style="text-align:center">
+    <h2>🌟 Есіңде сақта!</h2>
+
+    <p>🎨 <b>Сипатта</b> — эпитет</p>
+    <p>🔎 <b>Салыстыр</b> — теңеу</p>
+    <p>💬 <b>Сөйлет</b> — кейіптеу</p>
+
+    <button class="mainButton" onclick="showScreen('home')">
+      🏠 Басты бет
+    </button>
+  </div>
+
+</section>
+
+
+<!-- КӨРКЕМ СӨЗДІ ТАП -->
+<section id="findScreen" class="screen">
+
+  <div class="topbar">
+    <button class="back" onclick="showScreen('home')">←</button>
+
+    <div class="pageTitle">
+      <h2>🔎 КӨРКЕМ СӨЗДІ ТАП</h2>
+      <p>10 тапсырманы орындап, жұлдыз жина!</p>
+    </div>
+  </div>
+
+  <div class="card blue">
+
+    <div class="scoreRow">
+      <span id="progressText">1 / 10</span>
+      <span id="starText">⭐ 0</span>
+    </div>
+
+    <div class="progressTrack">
+      <div id="progressBar" class="progressBar" style="width:10%"></div>
+    </div>
+
+    <div style="text-align:center;font-size:45px">
+      📖 ✨
+    </div>
+
+    <h2 id="gameQuestion" style="text-align:center;line-height:1.5"></h2>
+
+    <div id="gameAnswers" class="answers"></div>
+
+    <div id="gameFeedback" class="feedback" style="text-align:center"></div>
+
+    <div style="text-align:center;margin-top:18px">
+      <button
+        id="nextButton"
+        class="mainButton"
+        onclick="nextQuestion()"
+        style="display:none">
+        Келесі сұрақ →
+      </button>
     </div>
 
   </div>
 
+</section>
 
-  <div class="nextBox">
 
-    <h3>🌟 Жарайсың!</h3>
+<!-- НӘТИЖЕ -->
+<section id="resultScreen" class="screen">
 
-    <p>
-      Есіңде сақта:
-    </p>
+  <div class="resultCard">
 
-    <p>
-      🎨 <b>Сипатта</b> — эпитет<br><br>
-      🔎 <b>Салыстыр</b> — теңеу<br><br>
-      💬 <b>Сөйлет</b> — кейіптеу
-    </p>
+    <div style="font-size:70px">🏆</div>
 
-    <button class="homeButton" onclick="showScreen('home')">
-      🏠 Басты бетке қайту
+    <h2 style="color:#6c4bd3">НӘТИЖЕҢ</h2>
+
+    <div id="finalScore"
+      style="font-size:44px;font-weight:bold;margin:20px 0">
+    </div>
+
+    <div id="finalMessage"
+      style="font-size:20px;font-weight:bold;line-height:1.5;margin-bottom:25px">
+    </div>
+
+    <button class="mainButton" onclick="startFindGame()">
+      🔄 Қайта ойнау
+    </button>
+
+    <br><br>
+
+    <button class="answerButton" onclick="showScreen('home')">
+      🏠 Басты бет
     </button>
 
   </div>
@@ -553,49 +532,116 @@ h1{
 
 <script>
 
-function showScreen(screenId){
+const questions = [
 
-  const screens =
-    document.querySelectorAll('.screen');
+{
+question:'«Алтын күн көкжиектен көтерілді». Эпитетті тап.',
+answers:['көкжиектен','алтын күн','көтерілді'],
+correct:1,
+explanation:'🎨 «Алтын күн» — күннің ерекше белгісін көрсетіп тұрған эпитет.'
+},
 
-  screens.forEach(function(screen){
+{
+question:'«Қар мақтадай үлпілдек». Қандай көркемдегіш құрал қолданылған?',
+answers:['Эпитет','Теңеу','Кейіптеу'],
+correct:1,
+explanation:'🔎 Қар мақтаға ұқсатылған. Сондықтан бұл — теңеу.'
+},
+
+{
+question:'«Тентек жел жапырақтармен ойнады». Кейіптеуді тап.',
+answers:['тентек','жел жапырақтармен ойнады','жапырақтар'],
+correct:1,
+explanation:'✨ Желге адамның «ойнау» әрекеті берілген. Бұл — кейіптеу.'
+},
+
+{
+question:'«Мөлдір бұлақ сылдырап ағып жатыр». Эпитетті тап.',
+answers:['мөлдір бұлақ','сылдырап','ағып жатыр'],
+correct:0,
+explanation:'🎨 «Мөлдір» сөзі бұлақтың ерекше белгісін көрсетеді.'
+},
+
+{
+question:'«Көл айнадай жарқырады». Көл неге ұқсатылған?',
+answers:['күнге','айнаға','бұлтқа'],
+correct:1,
+explanation:'🔎 Көл айнаға ұқсатылған. Бұл — теңеу.'
+},
+
+{
+question:'«Күн бізге күлімдеді». Қандай көркемдегіш құрал қолданылған?',
+answers:['Теңеу','Эпитет','Кейіптеу'],
+correct:2,
+explanation:'✨ Күн адам сияқты күлімдеп тұр. Бұл — кейіптеу.'
+},
+
+{
+question:'«Аппақ қар даланы жапты». Эпитетті тап.',
+answers:['даланы','жапты','аппақ қар'],
+correct:2,
+explanation:'🎨 «Аппақ» сөзі қардың ерекше белгісін көрсетеді.'
+},
+
+{
+question:'«Жұлдыздар моншақтай жарқырады». Бұл қандай көркемдегіш құрал?',
+answers:['Теңеу','Кейіптеу','Эпитет'],
+correct:0,
+explanation:'🔎 Жұлдыздар моншаққа ұқсатылған. Бұл — теңеу.'
+},
+
+{
+question:'«Өзен ән салып ағып жатыр». Қандай көркемдегіш құрал қолданылған?',
+answers:['Эпитет','Теңеу','Кейіптеу'],
+correct:2,
+explanation:'✨ Өзенге адамның «ән салу» әрекеті берілген. Бұл — кейіптеу.'
+},
+
+{
+question:'«Кең дала көз жетпеске созылып жатыр». Эпитетті тап.',
+answers:['кең дала','созылып жатыр','көз жетпеске'],
+correct:0,
+explanation:'🎨 «Кең» сөзі даланың ерекше белгісін көрсетіп тұр.'
+}
+
+];
+
+let currentQuestion=0;
+let score=0;
+let answered=false;
+
+
+function showScreen(id){
+
+  document.querySelectorAll('.screen').forEach(function(screen){
     screen.classList.remove('active');
   });
 
-  document
-    .getElementById(screenId)
-    .classList.add('active');
+  document.getElementById(id).classList.add('active');
 
-  window.scrollTo({
-    top:0,
-    behavior:'smooth'
-  });
-
+  window.scrollTo(0,0);
 }
 
 
-function checkAnswer(button,isCorrect,feedbackId){
+function lessonAnswer(button,correct,feedbackId){
 
-  const feedback =
-    document.getElementById(feedbackId);
+  const box=button.parentElement;
+  const buttons=box.querySelectorAll('.answerButton');
 
-  const buttons =
-    button.parentElement.querySelectorAll('.answerButton');
-
-  buttons.forEach(function(btn){
-    btn.style.borderColor='#e5e7eb';
-    btn.style.background='white';
+  buttons.forEach(function(b){
+    b.style.background='white';
+    b.style.borderColor='#e5e7eb';
   });
 
-  if(isCorrect){
+  const feedback=document.getElementById(feedbackId);
+
+  if(correct){
 
     button.style.background='#dcfce7';
     button.style.borderColor='#22c55e';
 
     feedback.className='feedback correct';
-
-    feedback.innerHTML=
-      '🌟 Дұрыс! Жарайсың!';
+    feedback.innerHTML='🌟 Дұрыс! Жарайсың!';
 
   }else{
 
@@ -603,12 +649,166 @@ function checkAnswer(button,isCorrect,feedbackId){
     button.style.borderColor='#ef4444';
 
     feedback.className='feedback wrong';
-
-    feedback.innerHTML=
-      '😊 Тағы бір ойланып көр!';
+    feedback.innerHTML='😊 Тағы бір ойланып көр!';
 
   }
+}
 
+
+function startFindGame(){
+
+  currentQuestion=0;
+  score=0;
+  answered=false;
+
+  showScreen('findScreen');
+  loadQuestion();
+}
+
+
+function loadQuestion(){
+
+  answered=false;
+
+  const q=questions[currentQuestion];
+
+  document.getElementById('progressText').textContent=
+    (currentQuestion+1)+' / '+questions.length;
+
+  document.getElementById('starText').textContent=
+    '⭐ '+score;
+
+  document.getElementById('progressBar').style.width=
+    ((currentQuestion+1)/questions.length*100)+'%';
+
+  document.getElementById('gameQuestion').textContent=
+    q.question;
+
+  document.getElementById('gameFeedback').innerHTML='';
+
+  document.getElementById('nextButton').style.display='none';
+
+  const box=document.getElementById('gameAnswers');
+  box.innerHTML='';
+
+  q.answers.forEach(function(answer,index){
+
+    const button=document.createElement('button');
+
+    button.className='answerButton';
+    button.textContent=answer;
+
+    button.onclick=function(){
+      selectGameAnswer(index,button);
+    };
+
+    box.appendChild(button);
+  });
+}
+
+
+function selectGameAnswer(index,button){
+
+  if(answered) return;
+
+  answered=true;
+
+  const q=questions[currentQuestion];
+
+  const buttons=
+    document.getElementById('gameAnswers')
+    .querySelectorAll('.answerButton');
+
+  buttons.forEach(function(b){
+    b.disabled=true;
+  });
+
+  const feedback=document.getElementById('gameFeedback');
+
+  if(index===q.correct){
+
+    score++;
+
+    button.style.background='#dcfce7';
+    button.style.borderColor='#22c55e';
+
+    feedback.innerHTML=
+      '<span class="correct">🌟 Дұрыс! Жарайсың!</span><br><br>'+
+      q.explanation;
+
+  }else{
+
+    button.style.background='#fee2e2';
+    button.style.borderColor='#ef4444';
+
+    buttons[q.correct].style.background='#dcfce7';
+    buttons[q.correct].style.borderColor='#22c55e';
+
+    feedback.innerHTML=
+      '<span class="wrong">😊 Бұл жолы қателестің.</span><br><br>'+
+      q.explanation;
+  }
+
+  document.getElementById('starText').textContent='⭐ '+score;
+
+  const next=document.getElementById('nextButton');
+  next.style.display='inline-block';
+
+  if(currentQuestion===questions.length-1){
+    next.textContent='Нәтижені көру 🏆';
+  }else{
+    next.textContent='Келесі сұрақ →';
+  }
+}
+
+
+function nextQuestion(){
+
+  if(currentQuestion<questions.length-1){
+
+    currentQuestion++;
+    loadQuestion();
+
+  }else{
+
+    showResult();
+
+  }
+}
+
+
+function showResult(){
+
+  showScreen('resultScreen');
+
+  document.getElementById('finalScore').textContent=
+    score+' / '+questions.length+' ⭐';
+
+  let message='';
+
+  if(score>=9){
+
+    message='🌟 Керемет! Сен — КӨРКЕМ СӨЗ ШЕБЕРІСІҢ!';
+
+  }else if(score>=7){
+
+    message='👏 Тамаша! Сен көркем сөздерді жақсы танисың!';
+
+  }else if(score>=5){
+
+    message='😊 Жақсы нәтиже! Тағы біраз жаттықсаң, одан да жақсы болады!';
+
+  }else{
+
+    message='📖 Жарайсың! «Үйренемін» бөліміне кіріп, тағы бір қайталап көр!';
+  }
+
+  document.getElementById('finalMessage').textContent=message;
+}
+
+
+function comingSoon(name){
+  alert('✨ «'+name+'» бөлімі келесі кезеңде қосылады!');
 }
 
 </script>
