@@ -7,621 +7,265 @@
 
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;font-family:Arial,sans-serif;min-height:100vh;
- background:linear-gradient(180deg,#dff5ff 0%,#fff7dc 52%,#e8ffdc 100%);
- color:#27364b
-}
-button,input{font-family:inherit}
+body{margin:0;font-family:Arial,sans-serif;min-height:100vh;background:linear-gradient(180deg,#dff5ff 0%,#fff7dc 52%,#e8ffdc 100%);color:#27364b}
+button,input,textarea{font-family:inherit}
 .page{max-width:580px;margin:auto;padding:22px 16px 55px}
 .screen{display:none}.screen.active{display:block}
 .sky{text-align:center;font-size:44px;margin-bottom:8px}
-.logo{
- background:white;border-radius:30px;padding:25px 18px;margin-bottom:22px;
- text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.10)
-}
+.logo{background:white;border-radius:30px;padding:25px 18px;margin-bottom:22px;text-align:center;box-shadow:0 10px 30px rgba(0,0,0,.10)}
 h1{margin:7px 0;font-size:40px;color:#6c4bd3}
 .subtitle{font-size:18px;font-weight:bold;line-height:1.5}
-.target{
- display:inline-block;margin-top:15px;padding:9px 14px;
- background:#fff1a8;border-radius:20px;font-size:14px
-}
+.target{display:inline-block;margin-top:15px;padding:9px 14px;background:#fff1a8;border-radius:20px;font-size:14px}
 .menu{display:grid;gap:14px}
-.menuButton{
- width:100%;border:0;border-radius:22px;padding:17px 20px;text-align:left;
- font-size:18px;font-weight:bold;cursor:pointer;
- box-shadow:0 7px 15px rgba(0,0,0,.09);transition:.2s
-}
-.menuButton:hover{transform:translateY(-2px)}
-.menuButton small{
- display:block;margin-top:5px;font-size:13px;font-weight:normal;color:#526170
-}
-.learn{background:#fff1a8}.find{background:#cfeeff}
-.three{background:#e4d8ff}.quiz{background:#d5f6c4}
-.create{background:#ffdced}.bag{background:#ffe8c9}
-.method{
- margin-top:23px;padding:18px;text-align:center;
- background:rgba(255,255,255,.82);border-radius:22px
-}
+.menuButton{width:100%;border:0;border-radius:22px;padding:17px 20px;text-align:left;font-size:18px;font-weight:bold;cursor:pointer;box-shadow:0 7px 15px rgba(0,0,0,.09)}
+.menuButton small{display:block;margin-top:5px;font-size:13px;font-weight:normal;color:#526170}
+.learn{background:#fff1a8}.find{background:#cfeeff}.three{background:#e4d8ff}.quiz{background:#d5f6c4}.create{background:#ffdced}.bag{background:#ffe8c9}
+.method{margin-top:23px;padding:18px;text-align:center;background:rgba(255,255,255,.82);border-radius:22px}
 .methodTitle{color:#6c4bd3;font-weight:bold;margin-bottom:10px}
 .footer{text-align:center;margin-top:22px;color:#64748b;font-size:13px}
 .topbar{display:flex;align-items:center;gap:12px;margin-bottom:20px}
-.back{
- border:0;background:white;border-radius:50%;width:45px;height:45px;
- font-size:22px;cursor:pointer;box-shadow:0 5px 12px rgba(0,0,0,.1)
-}
-.pageTitle{flex:1}.pageTitle h2{margin:0;color:#6c4bd3}
-.pageTitle p{margin:4px 0 0;font-size:13px;color:#64748b}
-.card{
- background:white;border-radius:25px;padding:20px;margin-bottom:17px;
- box-shadow:0 8px 20px rgba(0,0,0,.08)
-}
-.yellow{border-top:8px solid #ffd95a}.blue{border-top:8px solid #70c9ff}
-.purple{border-top:8px solid #b69cff}.green{border-top:8px solid #7ddc8c}
-.pink{border-top:8px solid #ff9fc8}
-.questionTag{
- display:inline-block;margin:10px 0;padding:7px 12px;border-radius:15px;
- font-weight:bold;background:#f3f4f6
-}
+.back{border:0;background:white;border-radius:50%;width:45px;height:45px;font-size:22px;cursor:pointer;box-shadow:0 5px 12px rgba(0,0,0,.1)}
+.pageTitle{flex:1}.pageTitle h2{margin:0;color:#6c4bd3}.pageTitle p{margin:4px 0 0;font-size:13px;color:#64748b}
+.card{background:white;border-radius:25px;padding:20px;margin-bottom:17px;box-shadow:0 8px 20px rgba(0,0,0,.08)}
+.yellow{border-top:8px solid #ffd95a}.blue{border-top:8px solid #70c9ff}.purple{border-top:8px solid #b69cff}.green{border-top:8px solid #7ddc8c}
+.questionTag{display:inline-block;margin:10px 0;padding:7px 12px;border-radius:15px;font-weight:bold;background:#f3f4f6}
 .example{margin-top:10px;padding:13px;background:#f8fafc;border-radius:16px;line-height:1.8}
 .tryBox{margin-top:13px;padding:14px;border-radius:17px;background:#fffaf0}
 .answers{display:grid;gap:9px;margin-top:12px}
-.answerButton{
- border:2px solid #e5e7eb;background:white;border-radius:15px;
- padding:12px;cursor:pointer;font-size:15px
-}
-.feedback{min-height:24px;margin-top:12px;font-weight:bold;line-height:1.5}
-.correct{color:#16803a}.wrong{color:#d33b3b}
-.mainButton{
- border:0;background:#6c4bd3;color:white;padding:13px 22px;
- border-radius:18px;font-size:16px;font-weight:bold;cursor:pointer
-}
-.secondaryButton{
- border:2px solid #6c4bd3;background:white;color:#6c4bd3;padding:11px 18px;
- border-radius:18px;font-size:15px;font-weight:bold;cursor:pointer
-}
-.progressTrack{
- height:11px;background:#e5e7eb;border-radius:20px;overflow:hidden;
- margin:15px 0 24px
-}
-.progressBar{height:100%;background:#70c9ff;transition:.3s}
+.answerButton{border:2px solid #e5e7eb;background:white;border-radius:15px;padding:12px;cursor:pointer;font-size:15px}
+.feedback{min-height:24px;margin-top:12px;font-weight:bold;line-height:1.5}.correct{color:#16803a}.wrong{color:#d33b3b}
+.mainButton{border:0;background:#6c4bd3;color:white;padding:13px 22px;border-radius:18px;font-size:16px;font-weight:bold;cursor:pointer}
+.secondaryButton{border:2px solid #6c4bd3;background:white;color:#6c4bd3;padding:11px 18px;border-radius:18px;font-size:15px;font-weight:bold;cursor:pointer}
+.progressTrack{height:11px;background:#e5e7eb;border-radius:20px;overflow:hidden;margin:15px 0 24px}.progressBar{height:100%;background:#70c9ff}
 .scoreRow{display:flex;justify-content:space-between;font-weight:bold}
-.resultCard{
- background:white;text-align:center;padding:30px 20px;border-radius:28px;
- margin-top:40px;box-shadow:0 10px 30px rgba(0,0,0,.1)
-}
-
-/* 3С */
+.resultCard{background:white;text-align:center;padding:30px 20px;border-radius:28px;margin-top:40px;box-shadow:0 10px 30px rgba(0,0,0,.1)}
 .objectGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:15px}
-.objectButton{
- border:2px solid #eee8ff;background:#faf8ff;border-radius:18px;
- padding:14px 8px;font-size:16px;cursor:pointer;font-weight:bold
-}
+.objectButton{border:2px solid #eee8ff;background:#faf8ff;border-radius:18px;padding:14px 8px;font-size:16px;cursor:pointer;font-weight:bold}
 .objectButton.selected{background:#e4d8ff;border-color:#8b6bdc}
-.bigObject{text-align:center;font-size:65px}
-.objectName{text-align:center;font-size:28px;font-weight:bold;color:#6c4bd3;margin-bottom:15px}
-.stepBox{
- background:white;border-radius:22px;padding:18px;margin-bottom:14px;
- box-shadow:0 6px 16px rgba(0,0,0,.07)
-}
-.stepNumber{
- display:inline-block;padding:6px 11px;border-radius:15px;
- background:#eee8ff;color:#6c4bd3;font-weight:bold
-}
+.bigObject{text-align:center;font-size:65px}.objectName{text-align:center;font-size:28px;font-weight:bold;color:#6c4bd3;margin-bottom:15px}
+.stepBox{background:white;border-radius:22px;padding:18px;margin-bottom:14px;box-shadow:0 6px 16px rgba(0,0,0,.07)}
+.stepNumber{display:inline-block;padding:6px 11px;border-radius:15px;background:#eee8ff;color:#6c4bd3;font-weight:bold}
 .choiceGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
-.choice{
- border:2px solid #e5e7eb;background:white;padding:10px 5px;
- border-radius:15px;cursor:pointer
-}
+.choice{border:2px solid #e5e7eb;background:white;padding:10px 5px;border-radius:15px;cursor:pointer}
 .choice.selected{border-color:#8b6bdc;background:#eee8ff;font-weight:bold}
-.sentenceResult{
- background:linear-gradient(135deg,#fff2b8,#e8dcff,#d9f7ff);
- border-radius:25px;padding:22px;text-align:center;margin-top:18px
-}
+.sentenceResult{background:linear-gradient(135deg,#fff2b8,#e8dcff,#d9f7ff);border-radius:25px;padding:22px;text-align:center;margin-top:18px}
 .finalSentence{font-size:21px;line-height:1.6;font-weight:bold}
-
-/* Чемпионат */
-.levelBadge{
- display:inline-block;padding:8px 14px;border-radius:20px;
- background:#fff1a8;font-weight:bold;margin-bottom:12px
-}
-.scene{
- font-size:58px;text-align:center;padding:18px;background:#f5f9ff;
- border-radius:22px;margin:15px 0;letter-spacing:5px
-}
-.medal{font-size:80px;margin:10px 0}
-.titleAward{
- display:inline-block;background:linear-gradient(135deg,#fff1a8,#e4d8ff);
- padding:13px 18px;border-radius:20px;font-size:21px;
- font-weight:bold;color:#6c4bd3
-}
-
-/* Шығармашылық зертхана */
-.inspiration{
- text-align:center;
- background:linear-gradient(135deg,#ffe3f0,#e9ddff,#dcf5ff);
- border-radius:26px;padding:22px;margin-bottom:18px
-}
-.inspirationEmoji{font-size:72px}
-.inspirationWord{
- font-size:29px;font-weight:bold;color:#6c4bd3;margin:8px 0
-}
-.writeBox{
- width:100%;padding:14px;border:2px solid #e5e7eb;border-radius:16px;
- font-size:16px;outline:none;margin-top:8px
-}
+.levelBadge{display:inline-block;padding:8px 14px;border-radius:20px;background:#fff1a8;font-weight:bold;margin-bottom:12px}
+.scene{font-size:58px;text-align:center;padding:18px;background:#f5f9ff;border-radius:22px;margin:15px 0}
+.medal{font-size:80px}.titleAward{display:inline-block;background:#eee8ff;padding:13px 18px;border-radius:20px;font-size:21px;font-weight:bold;color:#6c4bd3}
+.inspiration{text-align:center;background:linear-gradient(135deg,#ffe3f0,#e9ddff,#dcf5ff);border-radius:26px;padding:22px;margin-bottom:18px}
+.inspirationEmoji{font-size:72px}.inspirationWord{font-size:29px;font-weight:bold;color:#6c4bd3;margin:8px}
+.writeBox{width:100%;padding:14px;border:2px solid #e5e7eb;border-radius:16px;font-size:16px;outline:none;margin-top:8px}
 .writeBox:focus{border-color:#9a7ae5}
-.hintBox{
- display:none;background:#fff8d8;border-radius:18px;padding:14px;
- margin-top:12px;line-height:1.6
-}
-.authorResult{
- display:none;background:linear-gradient(135deg,#ffe6f1,#fff5c9,#dff6ff);
- border-radius:25px;padding:22px;text-align:center;margin-top:18px
-}
+.hintBox{display:none;background:#fff8d8;border-radius:18px;padding:14px;margin-top:12px;line-height:1.6}
+.authorResult{display:none;background:linear-gradient(135deg,#ffe6f1,#fff5c9,#dff6ff);border-radius:25px;padding:22px;text-align:center;margin-top:18px}
+.editArea{width:100%;min-height:110px;padding:14px;border:2px solid #cfc1f5;border-radius:16px;font-size:17px;line-height:1.6;margin:12px 0}
+.originalWords{background:white;border-radius:15px;padding:12px;margin:12px 0;text-align:left;font-size:14px;line-height:1.7}
+.bagItem{background:white;border-radius:20px;padding:17px;margin-bottom:12px;box-shadow:0 5px 15px rgba(0,0,0,.07)}
+.bagSentence{font-size:17px;line-height:1.6;font-weight:bold}.deleteButton{margin-top:10px;border:0;background:#ffe5e5;color:#b42318;padding:8px 12px;border-radius:12px;cursor:pointer}
+.emptyBag{text-align:center;padding:35px;color:#64748b}.countBadge{display:inline-block;background:#ffe8c9;padding:8px 13px;border-radius:17px;font-weight:bold}
 
-/* Қоржын */
-.bagItem{
- background:white;border-radius:20px;padding:17px;margin-bottom:12px;
- box-shadow:0 5px 15px rgba(0,0,0,.07)
-}
-.bagSentence{font-size:17px;line-height:1.6;font-weight:bold}
-.deleteButton{
- margin-top:10px;border:0;background:#ffe5e5;color:#b42318;
- padding:8px 12px;border-radius:12px;cursor:pointer
-}
-.emptyBag{text-align:center;padding:35px 15px;color:#64748b}
-.countBadge{
- display:inline-block;background:#ffe8c9;padding:8px 13px;
- border-radius:17px;font-weight:bold
-}
-
-@media(max-width:420px){
- h1{font-size:34px}.page{padding:18px 14px 40px}
- .choiceGrid{grid-template-columns:1fr}
-}
+@media(max-width:420px){h1{font-size:34px}.page{padding:18px 14px 40px}.choiceGrid{grid-template-columns:1fr}}
 </style>
 </head>
 
 <body>
 <main class="page">
 
-<!-- БАСТЫ БЕТ -->
 <section id="home" class="screen active">
 <div class="sky">☀️ ☁️ 🌈</div>
-
 <div class="logo">
-<div>✨ 📖 ✨</div>
-<h1>СӨЗСУРЕТ</h1>
+<div>✨ 📖 ✨</div><h1>СӨЗСУРЕТ</h1>
 <div class="subtitle">«Суретші бояумен,<br>ақын сөзбен сурет салады!»</div>
 <div class="target">👧🧒 Бастауыш сынып оқушыларына арналған</div>
 </div>
 
 <div class="menu">
-<button class="menuButton learn" onclick="showScreen('learnScreen')">
-📖 &nbsp; ҮЙРЕНЕМІН
-<small>Көркем сөздердің құпиясын аш</small>
-</button>
-
-<button class="menuButton find" onclick="startFindGame()">
-🔎 &nbsp; КӨРКЕМ СӨЗДІ ТАП
-<small>Сөйлем ішіндегі бейнелі сөздерді ізде</small>
-</button>
-
-<button class="menuButton three" onclick="startThreeS()">
-✨ &nbsp; 3С — СӨЗДІ ТІРІЛТ
-<small>Сипатта • Салыстыр • Сөйлет</small>
-</button>
-
-<button class="menuButton quiz" onclick="startChampionship()">
-🏆 &nbsp; БІЛІМІҢДІ СЫНА
-<small>Үш кезеңнен өтіп, өз атағыңды ал</small>
-</button>
-
-<button class="menuButton create" onclick="startCreator()">
-✍️ &nbsp; МЕН — СӨЗ СУРЕТШІСІМІН
-<small>Дайын жауапты таңдама — өз бейнеңді өзің жаса!</small>
-</button>
-
-<button class="menuButton bag" onclick="openBag()">
-🎒 &nbsp; МЕНІҢ ҚОРЖЫНЫМ
-<small>Өзің құрастырған көркем сөйлемдер жинағы</small>
-</button>
+<button class="menuButton learn" onclick="showScreen('learnScreen')">📖 &nbsp; ҮЙРЕНЕМІН<small>Көркем сөздердің құпиясын аш</small></button>
+<button class="menuButton find" onclick="startFindGame()">🔎 &nbsp; КӨРКЕМ СӨЗДІ ТАП<small>Сөйлем ішіндегі бейнелі сөздерді ізде</small></button>
+<button class="menuButton three" onclick="startThreeS()">✨ &nbsp; 3С — СӨЗДІ ТІРІЛТ<small>Сипатта • Салыстыр • Сөйлет</small></button>
+<button class="menuButton quiz" onclick="startChampionship()">🏆 &nbsp; БІЛІМІҢДІ СЫНА<small>Сынақтан өтіп, өз атағыңды ал</small></button>
+<button class="menuButton create" onclick="startCreator()">✍️ &nbsp; МЕН — СӨЗ СУРЕТШІСІМІН<small>Өз көркем сөйлеміңді жаз</small></button>
+<button class="menuButton bag" onclick="openBag()">🎒 &nbsp; МЕНІҢ ҚОРЖЫНЫМ<small>Авторлық сөйлемдеріңді жина</small></button>
 </div>
 
-<div class="method">
-<div class="methodTitle">⭐ Біздің 3С әдісіміз</div>
-<b>🎨 СИПАТТА → 🔎 САЛЫСТЫР → 💬 СӨЙЛЕТ</b>
-</div>
-
+<div class="method"><div class="methodTitle">⭐ Біздің 3С әдісіміз</div><b>🎨 СИПАТТА → 🔎 САЛЫСТЫР → 💬 СӨЙЛЕТ</b></div>
 <div class="footer">Үйрен • Тап • Құрастыр • Өзің жаса</div>
 </section>
 
 
 <!-- ҮЙРЕНЕМІН -->
 <section id="learnScreen" class="screen">
-<div class="topbar">
-<button class="back" onclick="showScreen('home')">←</button>
-<div class="pageTitle">
-<h2>📖 ҮЙРЕНЕМІН</h2>
-<p>Сөздің қалай бейнеге айналатынын көр!</p>
-</div>
-</div>
+<div class="topbar"><button class="back" onclick="showScreen('home')">←</button><div class="pageTitle"><h2>📖 ҮЙРЕНЕМІН</h2><p>Сөздің қалай бейнеге айналатынын көр!</p></div></div>
 
 <div class="card yellow">
 <h2>🎨 ЭПИТЕТ — СӨЗДІҢ БОЯУЫ</h2>
 <p><b>Эпитет</b> — заттың немесе құбылыстың ерекше белгісін көркем көрсететін сөз.</p>
 <div class="questionTag">1С — СИПАТТА: «Қандай?»</div>
-<div class="example">
-🌙 ай → <b>күміс ай</b><br>
-💧 бұлақ → <b>мөлдір бұлақ</b><br>
-🌸 гүл → <b>жұпар гүл</b>
-</div>
-<div class="tryBox">
-<b>🎯 Орындап көр!</b>
-<p>Қай тіркес көлді көркем сипаттап тұр?</p>
+<div class="example">🌙 ай → <b>күміс ай</b><br>💧 бұлақ → <b>мөлдір бұлақ</b><br>🌸 гүл → <b>жұпар гүл</b></div>
+<div class="tryBox"><b>🎯 Орындап көр!</b><p>Қай тіркес көлді көркем сипаттап тұр?</p>
 <div class="answers">
 <button class="answerButton" onclick="lessonAnswer(this,false,'e1')">көл толқиды</button>
 <button class="answerButton" onclick="lessonAnswer(this,true,'e1')">тынық көл</button>
 <button class="answerButton" onclick="lessonAnswer(this,false,'e1')">көл айнадай</button>
-</div>
-<div id="e1" class="feedback"></div>
-</div>
+</div><div id="e1" class="feedback"></div></div>
 </div>
 
 <div class="card blue">
 <h2>🔎 ТЕҢЕУ — ҰҚСАСТЫҚ КӨПІРІ</h2>
 <p><b>Теңеу</b> — бір нәрсені екінші нәрсеге ұқсатып бейнелеу.</p>
 <div class="questionTag">2С — САЛЫСТЫР: «Неге ұқсайды?»</div>
-<div class="example">
-💧 шық → <b>моншақтай</b><br>
-🌊 көл → <b>айнадай</b><br>
-🍂 жапырақ → <b>көбелектей</b>
-</div>
-<div class="tryBox">
-<b>🎯 Орындап көр!</b>
-<p>«Шық тамшылары моншақтай тізілді». Шық неге ұқсатылған?</p>
-<div class="answers">
-<button class="answerButton" onclick="lessonAnswer(this,false,'e2')">гүлге</button>
-<button class="answerButton" onclick="lessonAnswer(this,true,'e2')">моншаққа</button>
-<button class="answerButton" onclick="lessonAnswer(this,false,'e2')">жаңбырға</button>
-</div>
-<div id="e2" class="feedback"></div>
-</div>
+<div class="example">💧 шық → <b>моншақтай</b><br>🌊 көл → <b>айнадай</b><br>🍂 жапырақ → <b>көбелектей</b></div>
 </div>
 
 <div class="card purple">
 <h2>✨ КЕЙІПТЕУ — СӨЗГЕ ЖАН БІТІРУ</h2>
 <p><b>Кейіптеу</b> — табиғатты немесе жансыз затты адам сияқты бейнелеу.</p>
 <div class="questionTag">3С — СӨЙЛЕТ: «Адам сияқты не істейді?»</div>
-<div class="example">
-🎵 домбыра → <b>сыр шертті</b><br>
-🍃 жапырақтар → <b>қол бұлғады</b><br>
-🌙 ай → <b>бұлт арасынан сығалады</b>
-</div>
-<div class="tryBox">
-<b>🎯 Орындап көр!</b>
-<p>Қай сөйлемде кейіптеу бар?</p>
-<div class="answers">
-<button class="answerButton" onclick="lessonAnswer(this,false,'e3')">Домбыра ағаштан жасалған.</button>
-<button class="answerButton" onclick="lessonAnswer(this,true,'e3')">Домбыра күмбірлеп сыр шертті.</button>
-<button class="answerButton" onclick="lessonAnswer(this,false,'e3')">Домбыраның екі ішегі бар.</button>
-</div>
-<div id="e3" class="feedback"></div>
-</div>
+<div class="example">🎵 домбыра → <b>сыр шертті</b><br>🍃 жапырақтар → <b>қол бұлғады</b><br>🌙 ай → <b>бұлт арасынан сығалады</b></div>
 </div>
 
 <div class="card green" style="text-align:center">
-<h2>🌟 Үш құпия сұрақ</h2>
-<p>🎨 <b>Қандай?</b> → Сипатта → эпитет</p>
-<p>🔎 <b>Неге ұқсайды?</b> → Салыстыр → теңеу</p>
-<p>💬 <b>Адам сияқты не істейді?</b> → Сөйлет → кейіптеу</p>
-<button class="mainButton" onclick="startThreeS()">✨ Енді өзім жасап көремін!</button>
+<h2>🌟 Есіңде сақта!</h2>
+<p>🎨 Сипатта → эпитет</p><p>🔎 Салыстыр → теңеу</p><p>💬 Сөйлет → кейіптеу</p>
+<button class="mainButton" onclick="startThreeS()">✨ Өзім жасап көремін</button>
 </div>
 </section>
 
 
 <!-- КӨРКЕМ СӨЗДІ ТАП -->
 <section id="findScreen" class="screen">
-<div class="topbar">
-<button class="back" onclick="showScreen('home')">←</button>
-<div class="pageTitle"><h2>🔎 КӨРКЕМ СӨЗДІ ТАП</h2><p>10 тапсырма • әр дұрыс жауапқа ⭐</p></div>
-</div>
+<div class="topbar"><button class="back" onclick="showScreen('home')">←</button><div class="pageTitle"><h2>🔎 КӨРКЕМ СӨЗДІ ТАП</h2><p>10 тапсырма</p></div></div>
 <div class="card blue">
 <div class="scoreRow"><span id="progressText"></span><span id="starText"></span></div>
 <div class="progressTrack"><div id="progressBar" class="progressBar"></div></div>
-<div style="text-align:center;font-size:44px">🔎 📖 ✨</div>
-<h2 id="gameQuestion" style="text-align:center;line-height:1.5"></h2>
-<div id="gameAnswers" class="answers"></div>
-<div id="gameFeedback" class="feedback" style="text-align:center"></div>
-<div style="text-align:center;margin-top:18px">
-<button id="nextButton" class="mainButton" onclick="nextQuestion()" style="display:none">Келесі →</button>
-</div>
+<h2 id="gameQuestion" style="text-align:center"></h2>
+<div id="gameAnswers" class="answers"></div><div id="gameFeedback" class="feedback" style="text-align:center"></div>
+<div style="text-align:center;margin-top:18px"><button id="nextButton" class="mainButton" onclick="nextQuestion()" style="display:none">Келесі</button></div>
 </div>
 </section>
 
-<section id="resultScreen" class="screen">
-<div class="resultCard">
-<div style="font-size:70px">🏆</div>
-<h2 style="color:#6c4bd3">НӘТИЖЕҢ</h2>
-<div id="finalScore" style="font-size:44px;font-weight:bold;margin:20px 0"></div>
-<div id="finalMessage" style="font-size:20px;font-weight:bold;line-height:1.5;margin-bottom:25px"></div>
-<button class="mainButton" onclick="startFindGame()">🔄 Қайта ойнау</button><br><br>
-<button class="secondaryButton" onclick="showScreen('home')">🏠 Басты бет</button>
-</div>
-</section>
+<section id="resultScreen" class="screen"><div class="resultCard"><div style="font-size:70px">🏆</div><h2>НӘТИЖЕҢ</h2><div id="finalScore" style="font-size:40px;font-weight:bold"></div><p id="finalMessage"></p><button class="mainButton" onclick="startFindGame()">🔄 Қайта ойнау</button></div></section>
 
 
 <!-- 3С -->
 <section id="threeScreen" class="screen">
-<div class="topbar">
-<button class="back" onclick="showScreen('home')">←</button>
-<div class="pageTitle"><h2>✨ 3С — СӨЗДІ ТІРІЛТ</h2><p>Үш қадаммен көркем сөйлем жаса!</p></div>
-</div>
+<div class="topbar"><button class="back" onclick="showScreen('home')">←</button><div class="pageTitle"><h2>✨ 3С — СӨЗДІ ТІРІЛТ</h2><p>Табиғи көркем сөйлем құрастыр</p></div></div>
 
-<div class="card purple">
-<h3 style="text-align:center">Бір бейне таңда</h3>
-<div id="objectGrid" class="objectGrid"></div>
-<div style="text-align:center;margin-top:15px">
-<button class="secondaryButton" onclick="randomObject()">🎲 Маған біреуін таңда!</button>
-</div>
-</div>
+<div class="card purple"><h3 style="text-align:center">Бір бейне таңда</h3><div id="objectGrid" class="objectGrid"></div><div style="text-align:center;margin-top:15px"><button class="secondaryButton" onclick="randomObject()">🎲 Кездейсоқ таңда</button></div></div>
 
 <div id="builderArea" style="display:none">
-<div class="card">
-<div id="bigObject" class="bigObject"></div>
-<div id="objectName" class="objectName"></div>
-</div>
-
-<div class="stepBox"><span class="stepNumber">1С</span><h3>🎨 СИПАТТА</h3><p><b>Бұл қандай?</b></p><div id="describeChoices" class="choiceGrid"></div></div>
-<div class="stepBox"><span class="stepNumber">2С</span><h3>🔎 САЛЫСТЫР</h3><p><b>Неге немесе кімге ұқсайды?</b></p><div id="compareChoices" class="choiceGrid"></div></div>
-<div class="stepBox"><span class="stepNumber">3С</span><h3>💬 СӨЙЛЕТ</h3><p><b>Адам сияқты не істейді?</b></p><div id="personChoices" class="choiceGrid"></div></div>
-
-<div style="text-align:center;margin:20px 0">
-<button class="mainButton" onclick="buildSentence()">✨ Сөйлемімді құрастыр!</button>
-</div>
-
-<div id="sentenceResult" class="sentenceResult" style="display:none">
-<div style="font-size:45px">🎨✨</div>
-<h3>Сенің сөзбен салған суретің:</h3>
-<div id="finalSentence" class="finalSentence"></div>
-<p>🌟 Жарайсың!</p>
-<button class="secondaryButton" onclick="randomObject()">🎲 Тағы бір бейне</button>
-</div>
+<div class="card"><div id="bigObject" class="bigObject"></div><div id="objectName" class="objectName"></div></div>
+<div class="stepBox"><span class="stepNumber">1С</span><h3>🎨 СИПАТТА</h3><div id="describeChoices" class="choiceGrid"></div></div>
+<div class="stepBox"><span class="stepNumber">2С</span><h3>🔎 САЛЫСТЫР</h3><div id="compareChoices" class="choiceGrid"></div></div>
+<div class="stepBox"><span class="stepNumber">3С</span><h3>💬 СӨЙЛЕТ</h3><div id="personChoices" class="choiceGrid"></div></div>
+<div style="text-align:center"><button class="mainButton" onclick="buildSentence()">✨ Сөйлемімді құрастыр</button></div>
+<div id="sentenceResult" class="sentenceResult" style="display:none"><h3>🎨 Сенің сөйлемің:</h3><div id="finalSentence" class="finalSentence"></div></div>
 </div>
 </section>
 
 
 <!-- ЧЕМПИОНАТ -->
 <section id="champScreen" class="screen">
-<div class="topbar">
-<button class="back" onclick="showScreen('home')">←</button>
-<div class="pageTitle"><h2>🏆 СӨЗСУРЕТ ЧЕМПИОНАТЫ</h2><p>10 жұлдызға дейін жина!</p></div>
-</div>
+<div class="topbar"><button class="back" onclick="showScreen('home')">←</button><div class="pageTitle"><h2>🏆 СӨЗСУРЕТ ЧЕМПИОНАТЫ</h2></div></div>
 <div class="card green">
 <div class="scoreRow"><span id="champStage"></span><span id="champStars"></span></div>
-<div class="progressTrack"><div id="champBar" class="progressBar" style="background:#7ddc8c"></div></div>
-<div id="champBadge" class="levelBadge"></div>
-<div id="champScene" class="scene"></div>
-<h2 id="champQuestion" style="text-align:center;line-height:1.5"></h2>
-<div id="champAnswers" class="answers"></div>
+<div class="progressTrack"><div id="champBar" class="progressBar"></div></div>
+<div id="champBadge" class="levelBadge"></div><div id="champScene" class="scene"></div>
+<h2 id="champQuestion" style="text-align:center"></h2><div id="champAnswers" class="answers"></div>
 <div id="champFeedback" class="feedback" style="text-align:center"></div>
-<div style="text-align:center;margin-top:18px">
-<button id="champNext" class="mainButton" onclick="nextChamp()" style="display:none">Келесі →</button>
-</div>
+<div style="text-align:center"><button id="champNext" class="mainButton" onclick="nextChamp()" style="display:none">Келесі</button></div>
 </div>
 </section>
 
-<section id="champResult" class="screen">
-<div class="resultCard">
-<div id="champMedal" class="medal">🏅</div>
-<h2 style="color:#6c4bd3">ЧЕМПИОНАТ АЯҚТАЛДЫ!</h2>
-<div id="champScore" style="font-size:38px;font-weight:bold;margin:15px"></div>
-<div id="champTitle" class="titleAward"></div>
-<p id="champMessage" style="font-size:18px;line-height:1.6"></p>
-<button class="mainButton" onclick="startChampionship()">🔄 Қайта қатысу</button><br><br>
-<button class="secondaryButton" onclick="showScreen('home')">🏠 Басты бет</button>
-</div>
-</section>
+<section id="champResult" class="screen"><div class="resultCard"><div id="champMedal" class="medal"></div><h2>ЧЕМПИОНАТ АЯҚТАЛДЫ!</h2><div id="champScore"></div><div id="champTitle" class="titleAward"></div><p id="champMessage"></p><br><button class="mainButton" onclick="showScreen('home')">🏠 Басты бет</button></div></section>
 
 
-<!-- МЕН — СӨЗ СУРЕТШІСІМІН -->
+<!-- СӨЗ СУРЕТШІСІ -->
 <section id="creatorScreen" class="screen">
-<div class="topbar">
-<button class="back" onclick="showScreen('home')">←</button>
-<div class="pageTitle">
-<h2>✍️ МЕН — СӨЗ СУРЕТШІСІМІН</h2>
-<p>Бұл жолы дайын жауап жоқ. Автор — өзің!</p>
-</div>
-</div>
+<div class="topbar"><button class="back" onclick="showScreen('home')">←</button><div class="pageTitle"><h2>✍️ МЕН — СӨЗ СУРЕТШІСІМІН</h2><p>Ой — сенікі. СөзСурет сөйлемді реттеуге көмектеседі.</p></div></div>
 
 <div class="inspiration">
-<div>🎲 Бүгінгі шабытың:</div>
-<div id="inspirationEmoji" class="inspirationEmoji">🌈</div>
-<div id="inspirationWord" class="inspirationWord">КЕМПІРҚОСАҚ</div>
-<button class="secondaryButton" onclick="newInspiration()">🎲 Басқа тақырып бер!</button>
+<div>🎲 Бүгінгі шабытың:</div><div id="inspirationEmoji" class="inspirationEmoji"></div><div id="inspirationWord" class="inspirationWord"></div>
+<button class="secondaryButton" onclick="newInspiration()">🎲 Басқа тақырып</button>
 </div>
 
-<div class="stepBox">
-<span class="stepNumber">1С</span>
-<h3>🎨 СИПАТТА</h3>
-<p>Бұл қандай? Өзің бір немесе бірнеше сөз жаз.</p>
-<input id="ownDescribe" class="writeBox" placeholder="Мысалы: түрлі түсті...">
-</div>
+<div class="stepBox"><span class="stepNumber">1С</span><h3>🎨 СИПАТТА</h3><input id="ownDescribe" class="writeBox" placeholder="Мысалы: нәзік"></div>
+<div class="stepBox"><span class="stepNumber">2С</span><h3>🔎 САЛЫСТЫР</h3><input id="ownCompare" class="writeBox" placeholder="Мысалы: көбелектей"></div>
+<div class="stepBox"><span class="stepNumber">3С</span><h3>💬 СӨЙЛЕТ</h3><input id="ownPerson" class="writeBox" placeholder="Мысалы: бақпен сырласады"></div>
 
-<div class="stepBox">
-<span class="stepNumber">2С</span>
-<h3>🔎 САЛЫСТЫР</h3>
-<p>Неге немесе кімге ұқсайды?</p>
-<input id="ownCompare" class="writeBox" placeholder="Өз теңеуіңді жаз...">
-</div>
-
-<div class="stepBox">
-<span class="stepNumber">3С</span>
-<h3>💬 СӨЙЛЕТ</h3>
-<p>Егер ол адам сияқты әрекет етсе, не істер еді?</p>
-<input id="ownPerson" class="writeBox" placeholder="Өз ойыңды жаз...">
-</div>
-
-<div style="text-align:center">
-<button class="secondaryButton" onclick="showHint()">💡 Маған ишара бер</button>
-</div>
-
+<div style="text-align:center"><button class="secondaryButton" onclick="showHint()">💡 Ишара бер</button></div>
 <div id="hintBox" class="hintBox"></div>
 
-<div style="text-align:center;margin:20px 0">
-<button class="mainButton" onclick="makeOwnSentence()">🎨 Сөзбен суретімді жаса!</button>
-</div>
+<div style="text-align:center;margin:20px"><button class="mainButton" onclick="makeOwnSentence()">🎨 Сөйлемімді ретте</button></div>
 
 <div id="authorResult" class="authorResult">
-<div style="font-size:48px">✍️🎨✨</div>
-<h3 style="color:#6c4bd3">МЕНІҢ АВТОРЛЫҚ СӨЙЛЕМІМ</h3>
-<div id="ownFinalSentence" class="finalSentence"></div>
-<p>Бұл сөйлемді сен өзің құрастырдың!</p>
-<button class="mainButton" onclick="saveToBag()">🎒 Қоржыныма сал</button>
+<h3>✍️ Сен ұсынған сөздер</h3>
+<div id="originalWords" class="originalWords"></div>
+
+<h3>✨ «СөзСурет» реттеген нұсқа</h3>
+<textarea id="editableSentence" class="editArea"></textarea>
+
+<p style="font-size:13px;color:#64748b">✏️ Ұнамаса, сөйлемді өзің өзгерте аласың. Соңғы шешім — сенікі.</p>
+
+<button class="mainButton" onclick="saveEditedToBag()">❤️ Ұнады — қоржынға сал</button>
 <br><br>
-<button class="secondaryButton" onclick="newInspiration()">🎲 Жаңа шабыт</button>
+<button class="secondaryButton" onclick="newInspiration()">🎲 Жаңа тақырып</button>
 </div>
 </section>
 
 
 <!-- ҚОРЖЫН -->
 <section id="bagScreen" class="screen">
-<div class="topbar">
-<button class="back" onclick="showScreen('home')">←</button>
-<div class="pageTitle">
-<h2>🎒 МЕНІҢ ҚОРЖЫНЫМ</h2>
-<p>Өзің жасаған көркем сөйлемдер әлемі</p>
-</div>
-</div>
-
-<div class="card" style="text-align:center">
-<div style="font-size:55px">🎒✨</div>
-<h3>Менің авторлық жинағым</h3>
-<div id="bagCount" class="countBadge"></div>
-</div>
-
+<div class="topbar"><button class="back" onclick="showScreen('home')">←</button><div class="pageTitle"><h2>🎒 МЕНІҢ ҚОРЖЫНЫМ</h2><p>Авторлық сөйлемдер жинағы</p></div></div>
+<div class="card" style="text-align:center"><div style="font-size:55px">🎒✨</div><div id="bagCount" class="countBadge"></div></div>
 <div id="bagList"></div>
-
-<div style="text-align:center;margin-top:20px">
-<button class="mainButton" onclick="startCreator()">✍️ Жаңа сөйлем жазу</button>
-</div>
+<div style="text-align:center"><button class="mainButton" onclick="startCreator()">✍️ Жаңа сөйлем</button></div>
 </section>
 
 </main>
 
-
 <script>
-function showScreen(id){
- document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
- document.getElementById(id).classList.add('active');
- window.scrollTo(0,0);
-}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0)}
+function lessonAnswer(b,c,id){const f=document.getElementById(id);if(c){b.style.background='#dcfce7';f.innerHTML='<span class="correct">🌟 Дұрыс!</span>'}else{b.style.background='#fee2e2';f.innerHTML='<span class="wrong">😊 Тағы ойлан!</span>'}}
 
-function lessonAnswer(button,correct,id){
- const bs=button.parentElement.querySelectorAll('.answerButton');
- bs.forEach(b=>{b.style.background='white';b.style.borderColor='#e5e7eb'});
- const f=document.getElementById(id);
- if(correct){
-  button.style.background='#dcfce7';button.style.borderColor='#22c55e';
-  f.innerHTML='<span class="correct">🌟 Дұрыс! Жарайсың!</span>';
- }else{
-  button.style.background='#fee2e2';button.style.borderColor='#ef4444';
-  f.innerHTML='<span class="wrong">😊 Тағы бір ойланып көр!</span>';
- }
-}
-
-/* КӨРКЕМ СӨЗДІ ТАП */
+/* ТЕСТ */
 const questions=[
-{q:'«Мөлдір бұлақ тау етегінен ағып шықты». Эпитетті тап.',a:['тау етегінен','мөлдір бұлақ','ағып шықты'],c:1},
-{q:'«Шық тамшылары моншақтай тізілді». Қандай құрал?',a:['Эпитет','Теңеу','Кейіптеу'],c:1},
-{q:'«Қарт емен үнсіз ойға батты». Қандай тәсіл?',a:['Кейіптеу','Теңеу','Жай хабарлау'],c:0},
-{q:'«Жұпар гүлдер баққа сән берді». Эпитетті тап.',a:['баққа','жұпар гүлдер','сән берді'],c:1},
-{q:'«Көлдің беті айнадай жарқырады». Теңеуді тап.',a:['көлдің беті','айнадай','жарқырады'],c:1},
-{q:'«Көктем есігімізді қақты». Бұл қандай құрал?',a:['Кейіптеу','Эпитет','Теңеу'],c:0},
-{q:'«Қоңыр күз ауылға келді». Эпитетті тап.',a:['ауылға','келді','қоңыр күз'],c:2},
-{q:'«Қызғалдақтар кілемдей құлпырды». Бұл қандай тәсіл?',a:['Кейіптеу','Теңеу','Эпитет'],c:1},
-{q:'«Бұлақ тастарға бір сырын айтып жатты». Қандай тәсіл?',a:['Эпитет','Кейіптеу','Теңеу'],c:1},
-{q:'«Тынық түн ауылды құшағына алды». Дұрыс жауапты таңда.',a:['Эпитет пен кейіптеу бар','Тек теңеу бар','Көркем сөз жоқ'],c:0}
+['«Мөлдір бұлақ тау етегінен ағып шықты». Эпитетті тап.',['тау етегінен','мөлдір бұлақ','ағып шықты'],1],
+['«Шық тамшылары моншақтай тізілді». Қандай құрал?',['Эпитет','Теңеу','Кейіптеу'],1],
+['«Қарт емен үнсіз ойға батты». Қандай тәсіл?',['Кейіптеу','Теңеу','Жай хабарлау'],0],
+['«Жұпар гүлдер баққа сән берді». Эпитетті тап.',['баққа','жұпар гүлдер','сән берді'],1],
+['«Көлдің беті айнадай жарқырады». Теңеуді тап.',['көлдің беті','айнадай','жарқырады'],1],
+['«Көктем есігімізді қақты». Бұл қандай құрал?',['Кейіптеу','Эпитет','Теңеу'],0],
+['«Қоңыр күз ауылға келді». Эпитетті тап.',['ауылға','келді','қоңыр күз'],2],
+['«Қызғалдақтар кілемдей құлпырды». Бұл қандай тәсіл?',['Кейіптеу','Теңеу','Эпитет'],1],
+['«Бұлақ тастарға бір сырын айтып жатты». Қандай тәсіл?',['Эпитет','Кейіптеу','Теңеу'],1],
+['«Тынық түн ауылды құшағына алды». Дұрыс жауап?',['Эпитет пен кейіптеу','Тек теңеу','Көркем сөз жоқ'],0]
 ];
-
 let qi=0,score=0,answered=false;
-
 function startFindGame(){qi=0;score=0;showScreen('findScreen');loadQuestion()}
-function loadQuestion(){
- answered=false;const x=questions[qi];
- document.getElementById('progressText').textContent=(qi+1)+' / 10';
- document.getElementById('starText').textContent='⭐ '+score;
- document.getElementById('progressBar').style.width=((qi+1)*10)+'%';
- document.getElementById('gameQuestion').textContent=x.q;
- document.getElementById('gameFeedback').innerHTML='';
- document.getElementById('nextButton').style.display='none';
- const box=document.getElementById('gameAnswers');box.innerHTML='';
- x.a.forEach((t,i)=>{
-  const b=document.createElement('button');b.className='answerButton';b.textContent=t;
-  b.onclick=()=>answerQuestion(i,b);box.appendChild(b);
- });
-}
-function answerQuestion(i,b){
- if(answered)return;answered=true;const x=questions[qi];
- const bs=document.getElementById('gameAnswers').querySelectorAll('.answerButton');
- bs.forEach(v=>v.disabled=true);
- if(i===x.c){score++;b.style.background='#dcfce7';b.style.borderColor='#22c55e';
- document.getElementById('gameFeedback').innerHTML='<span class="correct">🌟 Дұрыс!</span>'}
- else{b.style.background='#fee2e2';bs[x.c].style.background='#dcfce7';
- document.getElementById('gameFeedback').innerHTML='<span class="wrong">😊 Дұрыс жауап жасыл түспен көрсетілді.</span>'}
- document.getElementById('starText').textContent='⭐ '+score;
- const n=document.getElementById('nextButton');n.style.display='inline-block';
- n.textContent=qi===9?'Нәтижені көру 🏆':'Келесі →';
-}
-function nextQuestion(){
- if(qi<9){qi++;loadQuestion()}else{
-  showScreen('resultScreen');
-  document.getElementById('finalScore').textContent=score+' / 10 ⭐';
-  document.getElementById('finalMessage').textContent=
-   score>=9?'🌟 Сен — Көркем сөз шеберісің!':
-   score>=7?'👏 Тамаша нәтиже!':
-   score>=5?'😊 Жақсы! Тағы жаттығып көр!':'📖 Үйренемін бөлімін тағы бір қайтала!';
- }
-}
+function loadQuestion(){answered=false;const x=questions[qi];document.getElementById('progressText').textContent=(qi+1)+'/10';document.getElementById('starText').textContent='⭐ '+score;document.getElementById('progressBar').style.width=(qi+1)*10+'%';document.getElementById('gameQuestion').textContent=x[0];document.getElementById('gameFeedback').innerHTML='';document.getElementById('nextButton').style.display='none';const box=document.getElementById('gameAnswers');box.innerHTML='';x[1].forEach((t,i)=>{const b=document.createElement('button');b.className='answerButton';b.textContent=t;b.onclick=()=>answerQuestion(i,b);box.appendChild(b)})}
+function answerQuestion(i,b){if(answered)return;answered=true;const x=questions[qi],bs=document.getElementById('gameAnswers').querySelectorAll('.answerButton');bs.forEach(v=>v.disabled=true);if(i===x[2]){score++;b.style.background='#dcfce7';document.getElementById('gameFeedback').innerHTML='<span class="correct">🌟 Дұрыс!</span>'}else{b.style.background='#fee2e2';bs[x[2]].style.background='#dcfce7';document.getElementById('gameFeedback').innerHTML='<span class="wrong">😊 Дұрыс жауап жасыл түспен белгіленді.</span>'}document.getElementById('starText').textContent='⭐ '+score;document.getElementById('nextButton').style.display='inline-block';document.getElementById('nextButton').textContent=qi===9?'Нәтиже 🏆':'Келесі →'}
+function nextQuestion(){if(qi<9){qi++;loadQuestion()}else{showScreen('resultScreen');document.getElementById('finalScore').textContent=score+'/10 ⭐';document.getElementById('finalMessage').textContent=score>=8?'🌟 Керемет нәтиже!':'👏 Жақсы! Тағы жаттығып көр!'}}
 
-/* 3С */
+/* ТАБИҒИ 3С */
 const objects=[
-{name:'АЙ',emoji:'🌙',d:['күміс','сұлу','жарық'],c:['теңгедей','табақтай','шамдай'],p:['сығалады','күлімдейді','ауылды күзетеді']},
-{name:'БҰЛАҚ',emoji:'💧',d:['мөлдір','салқын','таза'],c:['айнадай','күмістей','жіптей'],p:['ән салады','сыбырлайды','асығады']},
-{name:'ЖАПЫРАҚ',emoji:'🍂',d:['нәзік','сары','қоңыр'],c:['көбелектей','қайықтай','алақандай'],p:['билейді','қоштасады','қалықтайды']},
-{name:'ГҮЛ',emoji:'🌸',d:['жұпар','нәзік','әсем'],c:['жұлдыздай','моншақтай','шамдай'],p:['күлімдейді','бас изейді','оянады']},
-{name:'КӨЛ',emoji:'🌊',d:['тынық','мөлдір','көгілдір'],c:['айнадай','әйнектей','күмістей'],p:['тынығады','аспанмен сырласады','күнді құшағына алады']},
-{name:'ДОМБЫРА',emoji:'🎵',d:['қоңыр үнді','киелі','көне'],c:['бұлақтай','құстай','досындай'],p:['сыр шертеді','ән салады','тарихты сөйлетеді']},
-{name:'КІТАП',emoji:'📚',d:['қызықты','дана','қымбат'],c:['досындай','шамшырақтай','қазынадай'],p:['сыр айтады','жол көрсетеді','әлемге жетелейді']},
-{name:'МЕКТЕП',emoji:'🏫',d:['жарық','аяулы','білімді'],c:['ұядай','үлкен үйдей','шамшырақтай'],p:['балаларын қарсы алады','білімге шақырады','қанаттандырады']}
+{name:'АЙ',emoji:'🌙',d:['күміс','сұлу','жарық'],c:['теңгедей','табақтай','шамдай'],p:['сығалады','күлімдейді','ауылды күзетеді'],make:(d,c,p)=>`${cap(d)} ай ${c} жарқырап, ${p}.`},
+{name:'БҰЛАҚ',emoji:'💧',d:['мөлдір','салқын','таза'],c:['айнадай','күмістей','жіптей'],p:['ән салады','сыбырлайды','төменге асығады'],make:(d,c,p)=>`${cap(d)} бұлақ ${c} жарқырап, тастардың арасымен ${p}.`},
+{name:'ЖАПЫРАҚ',emoji:'🍂',d:['нәзік','сары','қоңыр'],c:['көбелектей','қайықтай','алақандай'],p:['билейді','күзбен қоштасады','жерге қалықтайды'],make:(d,c,p)=>`${cap(d)} жапырақ ${c} қалықтап, ${p}.`},
+{name:'ГҮЛ',emoji:'🌸',d:['жұпар','нәзік','әсем'],c:['жұлдыздай','моншақтай','шамдай'],p:['күнге күлімдейді','самалға бас изейді','таңмен бірге оянады'],make:(d,c,p)=>`${cap(d)} гүл ${c} жайнап, ${p}.`},
+{name:'КӨЛ',emoji:'🌊',d:['тынық','мөлдір','көгілдір'],c:['айнадай','әйнектей','күмістей'],p:['аспанмен сырласады','күн сәулесін құшағына алады','жағалауды тербетеді'],make:(d,c,p)=>`${cap(d)} көл ${c} жарқырап, ${p}.`},
+{name:'ДОМБЫРА',emoji:'🎵',d:['қоңыр үнді','киелі','көне'],c:['бұлақтай','құстай','досындай'],p:['халқымның сырын шертеді','ән салады','тарихты сөйлетеді'],make:(d,c,p)=>`${cap(d)} домбыра ${c} әуез төгіп, ${p}.`},
+{name:'КІТАП',emoji:'📚',d:['қызықты','дана','қымбат'],c:['досындай','шамшырақтай','қазынадай'],p:['сыр айтады','білімге жол көрсетеді','жаңа әлемге жетелейді'],make:(d,c,p)=>`${cap(d)} кітап ${c} жақын болып, ${p}.`},
+{name:'МЕКТЕП',emoji:'🏫',d:['жарық','аяулы','сүйікті'],c:['ұядай','үлкен үйдей','шамшырақтай'],p:['балаларын қарсы алады','білімге шақырады','шәкірттерін қанаттандырады'],make:(d,c,p)=>`${cap(d)} мектеп ${c} ыстық болып, ${p}.`}
 ];
-
 let obj=null,sd=null,sc=null,sp=null;
-function startThreeS(){showScreen('threeScreen');obj=sd=sc=sp=null;document.getElementById('builderArea').style.display='none';renderObjects()}
-function renderObjects(){
- const g=document.getElementById('objectGrid');g.innerHTML='';
- objects.forEach((o,i)=>{const b=document.createElement('button');b.className='objectButton';b.innerHTML=o.emoji+' '+o.name;b.onclick=()=>chooseObject(i,b);g.appendChild(b)})
-}
-function chooseObject(i,b){
- obj=objects[i];sd=sc=sp=null;
- document.querySelectorAll('.objectButton').forEach(x=>x.classList.remove('selected'));if(b)b.classList.add('selected');
- document.getElementById('builderArea').style.display='block';
- document.getElementById('bigObject').textContent=obj.emoji;document.getElementById('objectName').textContent=obj.name;
- renderChoices('describeChoices',obj.d,'d');renderChoices('compareChoices',obj.c,'c');renderChoices('personChoices',obj.p,'p');
- document.getElementById('sentenceResult').style.display='none';
-}
-function renderChoices(id,arr,type){
- const box=document.getElementById(id);box.innerHTML='';
- arr.forEach(t=>{const b=document.createElement('button');b.className='choice';b.textContent=t;b.onclick=()=>{
- box.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');
- if(type==='d')sd=t;if(type==='c')sc=t;if(type==='p')sp=t};box.appendChild(b)})
-}
-function buildSentence(){
- if(!obj||!sd||!sc||!sp){alert('🌟 Үш қадамның бәрінен бір жауап таңда!');return}
- const s=sd.charAt(0).toUpperCase()+sd.slice(1)+' '+obj.name.toLowerCase()+' '+sc+' көрініп, '+sp+'.';
- document.getElementById('finalSentence').textContent=s;document.getElementById('sentenceResult').style.display='block';
-}
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+function startThreeS(){showScreen('threeScreen');document.getElementById('builderArea').style.display='none';renderObjects()}
+function renderObjects(){const g=document.getElementById('objectGrid');g.innerHTML='';objects.forEach((o,i)=>{const b=document.createElement('button');b.className='objectButton';b.innerHTML=o.emoji+' '+o.name;b.onclick=()=>chooseObject(i,b);g.appendChild(b)})}
+function chooseObject(i,b){obj=objects[i];sd=sc=sp=null;document.querySelectorAll('.objectButton').forEach(x=>x.classList.remove('selected'));if(b)b.classList.add('selected');document.getElementById('builderArea').style.display='block';document.getElementById('bigObject').textContent=obj.emoji;document.getElementById('objectName').textContent=obj.name;renderChoices('describeChoices',obj.d,'d');renderChoices('compareChoices',obj.c,'c');renderChoices('personChoices',obj.p,'p');document.getElementById('sentenceResult').style.display='none'}
+function renderChoices(id,arr,type){const box=document.getElementById(id);box.innerHTML='';arr.forEach(t=>{const b=document.createElement('button');b.className='choice';b.textContent=t;b.onclick=()=>{box.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');if(type==='d')sd=t;if(type==='c')sc=t;if(type==='p')sp=t};box.appendChild(b)})}
+function buildSentence(){if(!obj||!sd||!sc||!sp){alert('Үш қадамның бәрінен жауап таңда!');return}document.getElementById('finalSentence').textContent=obj.make(sd,sc,sp);document.getElementById('sentenceResult').style.display='block'}
 function randomObject(){const i=Math.floor(Math.random()*objects.length);chooseObject(i,document.querySelectorAll('.objectButton')[i])}
 
 /* ЧЕМПИОНАТ */
@@ -629,142 +273,81 @@ const champ=[
 ['🔎 СӨЗ БАРЛАУШЫ','📚✨','«Дана кітап маған жол көрсетті». Эпитетті тап.',['дана кітап','жол көрсетті','маған'],0],
 ['🔎 СӨЗ БАРЛАУШЫ','🌙☁️','«Ай бұлт арасынан сығалады». Қандай тәсіл?',['Эпитет','Кейіптеу','Теңеу'],1],
 ['🔎 СӨЗ БАРЛАУШЫ','💧✨','«Шық маржандай жарқырады». Бұл не?',['Теңеу','Кейіптеу','Эпитет'],0],
-['🧩 СӨЙЛЕМ ҚҰРАСТЫРУШЫ','🍂🌳','Ең көркем сөйлемді таңда.',['Жапырақ түсті.','Сары жапырақ түсті.','Нәзік жапырақ көбелектей қалықтап түсті.'],2],
-['🧩 СӨЙЛЕМ ҚҰРАСТЫРУШЫ','🎵🇰🇿','Домбыраны көркем бейнелейтін сөйлемді таңда.',['Домбыра тұр.','Киелі домбыра халқымның сырын шертті.','Домбыра ағаштан жасалған.'],1],
-['🧩 СӨЙЛЕМ ҚҰРАСТЫРУШЫ','🏫📖','Қай сөйлемде мектепке жан бітірілген?',['Мектеп үлкен.','Мектепте сабақ өтеді.','Мектеп балаларын қуана қарсы алды.'],2],
-['🎨 СӨЗ СУРЕТШІСІ','🌙🏡🌳','Түнгі көрініске ең бейнелі сөйлемді таңда.',['Түн болды.','Ай шықты.','Күміс ай тыныш ауылды мейірлене күзетіп тұр.'],2],
-['🎨 СӨЗ СУРЕТШІСІ','🌸🦋☀️','Көріністі қай сөйлем жақсы суреттейді?',['Гүл бар.','Көбелек ұшты.','Әсем гүлдер күлімдеп, көбелектер бақ ішінде билеп жүр.'],2],
-['🎨 СӨЗ СУРЕТШІСІ','💧⛰️🌿','Бұлақты әсерлі бейнелеген сөйлемді тап.',['Бұлақ ағады.','Таза су ағады.','Мөлдір бұлақ тастар арасында ән салып, төменге асығады.'],2],
-['👑 ШЕБЕРЛІК СЫНАҒЫ','📖🎨✨','Көркем сөздің басты қызметі қандай?',['Сөйлемді ұзарту','Ойды бейнелі әрі әсерлі жеткізу','Тек қиын сөз жасау'],1]
+['🧩 ҚҰРАСТЫРУШЫ','🍂🌳','Ең көркем сөйлемді таңда.',['Жапырақ түсті.','Сары жапырақ түсті.','Нәзік жапырақ көбелектей қалықтап түсті.'],2],
+['🧩 ҚҰРАСТЫРУШЫ','🎵🇰🇿','Домбыраны көркем бейнелейтін сөйлем.',['Домбыра тұр.','Киелі домбыра халқымның сырын шертті.','Домбыра ағаштан жасалған.'],1],
+['🧩 ҚҰРАСТЫРУШЫ','🏫📖','Қай сөйлемде мектепке жан бітірілген?',['Мектеп үлкен.','Мектепте сабақ өтеді.','Мектеп балаларын қуана қарсы алды.'],2],
+['🎨 СӨЗ СУРЕТШІСІ','🌙🏡','Ең бейнелі сөйлемді таңда.',['Түн болды.','Ай шықты.','Күміс ай тыныш ауылды мейірлене күзетіп тұр.'],2],
+['🎨 СӨЗ СУРЕТШІСІ','🌸🦋','Көріністі қай сөйлем жақсы суреттейді?',['Гүл бар.','Көбелек ұшты.','Әсем гүлдер күлімдеп, көбелектер бақ ішінде билеп жүр.'],2],
+['🎨 СӨЗ СУРЕТШІСІ','💧⛰️','Бұлақты әсерлі бейнелеген сөйлем.',['Бұлақ ағады.','Таза су ағады.','Мөлдір бұлақ тастар арасында ән салып ағады.'],2],
+['👑 ФИНАЛ','📖🎨','Көркем сөздің басты қызметі?',['Сөйлемді ұзарту','Ойды бейнелі әрі әсерлі жеткізу','Қиын сөз жасау'],1]
 ];
-
 let ci=0,cs=0,ca=false;
 function startChampionship(){ci=0;cs=0;showScreen('champScreen');loadChamp()}
-function loadChamp(){
- ca=false;const x=champ[ci];
- document.getElementById('champStage').textContent=(ci+1)+' / 10';document.getElementById('champStars').textContent='⭐ '+cs;
- document.getElementById('champBar').style.width=((ci+1)*10)+'%';document.getElementById('champBadge').textContent=x[0];
- document.getElementById('champScene').textContent=x[1];document.getElementById('champQuestion').textContent=x[2];
- document.getElementById('champFeedback').innerHTML='';document.getElementById('champNext').style.display='none';
- const box=document.getElementById('champAnswers');box.innerHTML='';
- x[3].forEach((t,i)=>{const b=document.createElement('button');b.className='answerButton';b.textContent=t;b.onclick=()=>answerChamp(i,b);box.appendChild(b)})
-}
-function answerChamp(i,b){
- if(ca)return;ca=true;const x=champ[ci];const bs=document.getElementById('champAnswers').querySelectorAll('.answerButton');bs.forEach(v=>v.disabled=true);
- if(i===x[4]){cs++;b.style.background='#dcfce7';document.getElementById('champFeedback').innerHTML='<span class="correct">⭐ Дұрыс!</span>'}
- else{b.style.background='#fee2e2';bs[x[4]].style.background='#dcfce7';document.getElementById('champFeedback').innerHTML='<span class="wrong">😊 Дұрыс жауап жасыл түспен көрсетілді.</span>'}
- document.getElementById('champStars').textContent='⭐ '+cs;document.getElementById('champNext').style.display='inline-block';
- document.getElementById('champNext').textContent=ci===9?'Атағымды көру 👑':'Келесі →';
-}
-function nextChamp(){if(ci<9){ci++;loadChamp()}else showChampResult()}
-function showChampResult(){
- showScreen('champResult');document.getElementById('champScore').textContent=cs+' / 10 ⭐';
- let t,m,msg;
- if(cs===10){t='👑 КӨРКЕМ СӨЗ ШЕБЕРІ';m='👑';msg='Тамаша! Барлық сынақтан өттің!'}
- else if(cs>=8){t='🎨 БЕЙНЕ ЖАСАУШЫ';m='🏆';msg='Керемет! Сөз арқылы бейне жасауды меңгердің!'}
- else if(cs>=5){t='🔎 КӨРКЕМ СӨЗ ІЗДЕУШІ';m='🥈';msg='Жақсы нәтиже!'}
- else{t='🌱 СӨЗ ЗЕРТТЕУШІ';m='🌱';msg='Жақсы бастама!'}
- document.getElementById('champMedal').textContent=m;document.getElementById('champTitle').textContent=t;document.getElementById('champMessage').textContent=msg;
-}
+function loadChamp(){ca=false;const x=champ[ci];document.getElementById('champStage').textContent=(ci+1)+'/10';document.getElementById('champStars').textContent='⭐ '+cs;document.getElementById('champBar').style.width=(ci+1)*10+'%';document.getElementById('champBadge').textContent=x[0];document.getElementById('champScene').textContent=x[1];document.getElementById('champQuestion').textContent=x[2];document.getElementById('champFeedback').innerHTML='';document.getElementById('champNext').style.display='none';const box=document.getElementById('champAnswers');box.innerHTML='';x[3].forEach((t,i)=>{const b=document.createElement('button');b.className='answerButton';b.textContent=t;b.onclick=()=>answerChamp(i,b);box.appendChild(b)})}
+function answerChamp(i,b){if(ca)return;ca=true;const x=champ[ci],bs=document.getElementById('champAnswers').querySelectorAll('.answerButton');bs.forEach(v=>v.disabled=true);if(i===x[4]){cs++;b.style.background='#dcfce7'}else{b.style.background='#fee2e2';bs[x[4]].style.background='#dcfce7'}document.getElementById('champStars').textContent='⭐ '+cs;document.getElementById('champNext').style.display='inline-block';document.getElementById('champNext').textContent=ci===9?'Атағымды көру 👑':'Келесі'}
+function nextChamp(){if(ci<9){ci++;loadChamp()}else{showScreen('champResult');document.getElementById('champScore').textContent=cs+'/10 ⭐';let t=cs>=9?'👑 КӨРКЕМ СӨЗ ШЕБЕРІ':cs>=7?'🎨 БЕЙНЕ ЖАСАУШЫ':cs>=5?'🔎 КӨРКЕМ СӨЗ ІЗДЕУШІ':'🌱 СӨЗ ЗЕРТТЕУШІ';document.getElementById('champTitle').textContent=t;document.getElementById('champMedal').textContent=cs>=9?'👑':'🏅';document.getElementById('champMessage').textContent='Сөз әлеміндегі саяхатың жалғаса берсін!'}}
 
-/* ШЫҒАРМАШЫЛЫҚ ЗЕРТХАНА */
+/* ШЫҒАРМАШЫЛЫҚ */
 const inspirations=[
-['🌧️','ЖАҢБЫР','Түсі, дыбысы немесе жылылығы туралы ойлан.','Оны жіпке, моншаққа немесе әуенге ұқсатуға бола ма?','Жаңбыр адам болса, терезеге не айтар еді?'],
-['🌈','КЕМПІРҚОСАҚ','Оның түстерін сипатта.','Көпірге, лентаға немесе доғаға ұқсай ма?','Ол аспанда не істеп тұрғандай?'],
-['⭐','ЖҰЛДЫЗ','Оның жарығын сипатта.','Моншаққа, шамға немесе көзге ұқсай ма?','Жұлдыз адам болса не істер еді?'],
-['🦋','КӨБЕЛЕК','Оның қанатын сипатта.','Гүлге, жапыраққа немесе бишіге ұқсай ма?','Ол бақта не істеп жүргендей?'],
-['🏔️','ТАУ','Оның биіктігін, түсін сипатта.','Алыпқа немесе қамалға ұқсай ма?','Тау адам болса не істер еді?'],
-['🌾','ДАЛА','Даланың кеңдігін, түсін ойла.','Кілемге немесе теңізге ұқсатуға бола ма?','Дала қонағын қалай қарсы алар еді?'],
-['🕊️','ҚҰС','Құстың түсі мен қимылын сипатта.','Жебеге, бұлтқа немесе әнге ұқсат.','Ол аспанда не айтып жүргендей?'],
-['🌲','ОРМАН','Орманның түсі мен тыныштығын сипатта.','Үлкен үйге немесе жасыл теңізге ұқсат.','Орман адам болса не істер еді?'],
-['🏡','АУЫЛ','Ауыл қандай?','Ұяға немесе үлкен отбасыға ұқсай ма?','Ауыл қонақты қалай қарсы алады?'],
-['🌅','ТАҢ','Таңның түсін сипатта.','Жаңа ашылған гүлге ұқсай ма?','Таң табиғатты қалай оятады?'],
-['🌊','ТЕҢІЗ','Теңіздің түсі мен мінезін сипатта.','Айнаға немесе алып кілемге ұқсат.','Теңіз адам болса не айтар еді?'],
-['🎵','ДОМБЫРА','Үнін сипатта.','Бұлаққа, құсқа немесе досқа ұқсат.','Домбыра қандай сыр айта алады?']
+['🌧️','ЖАҢБЫР','Түсін, дыбысын немесе жылылығын сипатта.','Жіпке, моншаққа, әуенге ұқсатуға бола ма?','Жаңбыр адам болса не істер еді?'],
+['🌈','КЕМПІРҚОСАҚ','Түстерін сипатта.','Көпірге, лентаға немесе доғаға ұқсай ма?','Ол аспанда не істеп тұрғандай?'],
+['⭐','ЖҰЛДЫЗ','Жарығын сипатта.','Моншаққа, шамға немесе көзге ұқсай ма?','Жұлдыз адам болса не істер еді?'],
+['🦋','КӨБЕЛЕК','Қанатын сипатта.','Гүлге, жапыраққа немесе бишіге ұқсай ма?','Ол бақта не істеп жүргендей?'],
+['🏔️','ТАУ','Биіктігін, түсін сипатта.','Алыпқа немесе қамалға ұқсай ма?','Тау адам болса не істер еді?'],
+['🌾','ДАЛА','Кеңдігін, түсін сипатта.','Кілемге немесе теңізге ұқсай ма?','Дала қонағын қалай қарсы алар еді?'],
+['🌲','ОРМАН','Түсі мен тыныштығын сипатта.','Жасыл теңізге ұқсай ма?','Орман адам болса не істер еді?'],
+['🏡','АУЫЛ','Ауыл қандай?','Ұяға немесе үлкен отбасыға ұқсай ма?','Ауыл қонақты қалай қарсы алар еді?'],
+['🎵','ДОМБЫРА','Үнін сипатта.','Бұлаққа, құсқа немесе досқа ұқсат.','Домбыра қандай сыр айтар еді?']
 ];
+let ii=0;
 
-let inspirationIndex=0;
-let currentOwnSentence='';
-
-function startCreator(){
- showScreen('creatorScreen');
- newInspiration();
+function cleanInput(s){
+ return s.trim().replace(/[.,!?;:]+$/g,'').replace(/\s+/g,' ');
 }
 
-function newInspiration(){
- let n;
- do{n=Math.floor(Math.random()*inspirations.length)}while(n===inspirationIndex && inspirations.length>1);
- inspirationIndex=n;
- const x=inspirations[n];
- document.getElementById('inspirationEmoji').textContent=x[0];
- document.getElementById('inspirationWord').textContent=x[1];
- document.getElementById('ownDescribe').value='';
- document.getElementById('ownCompare').value='';
- document.getElementById('ownPerson').value='';
- document.getElementById('hintBox').style.display='none';
- document.getElementById('authorResult').style.display='none';
- currentOwnSentence='';
-}
-
-function showHint(){
- const x=inspirations[inspirationIndex];
- const box=document.getElementById('hintBox');
- box.innerHTML='💡 <b>Ойлануға көмектесетін ишаралар:</b><br>🎨 '+x[2]+'<br>🔎 '+x[3]+'<br>💬 '+x[4];
- box.style.display='block';
-}
+function startCreator(){showScreen('creatorScreen');newInspiration()}
+function newInspiration(){ii=Math.floor(Math.random()*inspirations.length);const x=inspirations[ii];document.getElementById('inspirationEmoji').textContent=x[0];document.getElementById('inspirationWord').textContent=x[1];['ownDescribe','ownCompare','ownPerson'].forEach(id=>document.getElementById(id).value='');document.getElementById('hintBox').style.display='none';document.getElementById('authorResult').style.display='none'}
+function showHint(){const x=inspirations[ii],b=document.getElementById('hintBox');b.innerHTML='💡 <b>Ишара:</b><br>🎨 '+x[2]+'<br>🔎 '+x[3]+'<br>💬 '+x[4];b.style.display='block'}
 
 function makeOwnSentence(){
- const d=document.getElementById('ownDescribe').value.trim();
- const c=document.getElementById('ownCompare').value.trim();
- const p=document.getElementById('ownPerson').value.trim();
+ let d=cleanInput(document.getElementById('ownDescribe').value);
+ let c=cleanInput(document.getElementById('ownCompare').value);
+ let p=cleanInput(document.getElementById('ownPerson').value);
+ if(!d||!c||!p){alert('🌟 Үш қадамның бәріне өз ойыңды жаз!');return}
 
- if(!d||!c||!p){alert('🌟 Үш қадамның бәріне өз жауабыңды жаз!');return}
+ const word=inspirations[ii][1].toLowerCase();
 
- const word=inspirations[inspirationIndex][1].toLowerCase();
- currentOwnSentence=d.charAt(0).toUpperCase()+d.slice(1)+' '+word+' '+c+' болып, '+p+'.';
+ /* "сияқты" енгізсе де қайталанбауы үшін */
+ c=c.replace(/\s+болып$/i,'').trim();
 
- document.getElementById('ownFinalSentence').textContent=currentOwnSentence;
+ let sentence=cap(d)+' '+word+' '+c;
+
+ /* теңеу жалғауы жоқ болса механикалық -дай қоспаймыз */
+ if(!/(дай|дей|тай|тей|ша|ше)$/i.test(c) && !/\s(сияқты|секілді|тәрізді)$/i.test(c)){
+   sentence+=' сияқты';
+ }
+
+ sentence+=', '+p+'.';
+ sentence=sentence.replace(/\s+,/g,',').replace(/,+/g,',').replace(/\.+$/g,'.');
+
+ document.getElementById('originalWords').innerHTML=
+ '🎨 <b>Сипатта:</b> '+d+'<br>🔎 <b>Салыстыр:</b> '+c+'<br>💬 <b>Сөйлет:</b> '+p;
+
+ document.getElementById('editableSentence').value=sentence;
  document.getElementById('authorResult').style.display='block';
 }
 
-function getBag(){
- try{return JSON.parse(localStorage.getItem('sozSuretBag'))||[]}catch(e){return[]}
+function getBag(){try{return JSON.parse(localStorage.getItem('sozSuretBag'))||[]}catch(e){return[]}}
+function saveEditedToBag(){
+ let s=document.getElementById('editableSentence').value.trim();
+ if(!s)return;
+ s=cap(s).replace(/\s+/g,' ').replace(/\s+([,.!?])/g,'$1');
+ if(!/[.!?]$/.test(s))s+='.';
+ const bag=getBag();if(!bag.includes(s))bag.unshift(s);localStorage.setItem('sozSuretBag',JSON.stringify(bag));alert('🎒 Авторлық сөйлемің сақталды!');
 }
-
-function saveToBag(){
- if(!currentOwnSentence)return;
- const bag=getBag();
- if(!bag.includes(currentOwnSentence))bag.unshift(currentOwnSentence);
- localStorage.setItem('sozSuretBag',JSON.stringify(bag));
- alert('🎒 Сөйлемің қоржынға сақталды!');
-}
-
-function openBag(){
- showScreen('bagScreen');
- renderBag();
-}
-
-function renderBag(){
- const bag=getBag();
- document.getElementById('bagCount').textContent='Қоржынымда: '+bag.length+' сөйлем';
- const list=document.getElementById('bagList');list.innerHTML='';
-
- if(bag.length===0){
-  list.innerHTML='<div class="emptyBag"><div style="font-size:65px">🎒</div><h3>Қоржының әзірге бос</h3><p>«Мен — сөз суретшісімін» бөліміне кіріп, алғашқы авторлық сөйлеміңді жаса!</p></div>';
-  return;
- }
-
- bag.forEach((s,i)=>{
-  const item=document.createElement('div');item.className='bagItem';
-  item.innerHTML='<div class="bagSentence">✨ '+s+'</div><button class="deleteButton" onclick="deleteBagItem('+i+')">🗑️ Өшіру</button>';
-  list.appendChild(item);
- });
-}
-
-function deleteBagItem(i){
- const bag=getBag();bag.splice(i,1);
- localStorage.setItem('sozSuretBag',JSON.stringify(bag));renderBag();
-}
+function openBag(){showScreen('bagScreen');renderBag()}
+function renderBag(){const bag=getBag(),list=document.getElementById('bagList');document.getElementById('bagCount').textContent='Қоржынымда: '+bag.length+' сөйлем';list.innerHTML='';if(!bag.length){list.innerHTML='<div class="emptyBag">🎒<h3>Қоржының әзірге бос</h3><p>Алғашқы авторлық сөйлеміңді жаса!</p></div>';return}bag.forEach((s,i)=>{const d=document.createElement('div');d.className='bagItem';d.innerHTML='<div class="bagSentence">✨ '+s+'</div><button class="deleteButton" onclick="deleteBagItem('+i+')">🗑️ Өшіру</button>';list.appendChild(d)})}
+function deleteBagItem(i){const bag=getBag();bag.splice(i,1);localStorage.setItem('sozSuretBag',JSON.stringify(bag));renderBag()}
 </script>
 </body>
 </html>
