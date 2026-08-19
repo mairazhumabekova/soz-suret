@@ -250,23 +250,258 @@ function nextQuestion(){if(qi<9){qi++;loadQuestion()}else{showScreen('resultScre
 
 /* ТАБИҒИ 3С */
 const objects=[
-{name:'АЙ',emoji:'🌙',d:['күміс','сұлу','жарық'],c:['теңгедей','табақтай','шамдай'],p:['сығалады','күлімдейді','ауылды күзетеді'],make:(d,c,p)=>`${cap(d)} ай ${c} жарқырап, ${p}.`},
-{name:'БҰЛАҚ',emoji:'💧',d:['мөлдір','салқын','таза'],c:['айнадай','күмістей','жіптей'],p:['ән салады','сыбырлайды','төменге асығады'],make:(d,c,p)=>`${cap(d)} бұлақ ${c} жарқырап, тастардың арасымен ${p}.`},
-{name:'ЖАПЫРАҚ',emoji:'🍂',d:['нәзік','сары','қоңыр'],c:['көбелектей','қайықтай','алақандай'],p:['билейді','күзбен қоштасады','жерге қалықтайды'],make:(d,c,p)=>`${cap(d)} жапырақ ${c} қалықтап, ${p}.`},
-{name:'ГҮЛ',emoji:'🌸',d:['жұпар','нәзік','әсем'],c:['жұлдыздай','моншақтай','шамдай'],p:['күнге күлімдейді','самалға бас изейді','таңмен бірге оянады'],make:(d,c,p)=>`${cap(d)} гүл ${c} жайнап, ${p}.`},
-{name:'КӨЛ',emoji:'🌊',d:['тынық','мөлдір','көгілдір'],c:['айнадай','әйнектей','күмістей'],p:['аспанмен сырласады','күн сәулесін құшағына алады','жағалауды тербетеді'],make:(d,c,p)=>`${cap(d)} көл ${c} жарқырап, ${p}.`},
-{name:'ДОМБЫРА',emoji:'🎵',d:['қоңыр үнді','киелі','көне'],c:['бұлақтай','құстай','досындай'],p:['халқымның сырын шертеді','ән салады','тарихты сөйлетеді'],make:(d,c,p)=>`${cap(d)} домбыра ${c} әуез төгіп, ${p}.`},
-{name:'КІТАП',emoji:'📚',d:['қызықты','дана','қымбат'],c:['досындай','шамшырақтай','қазынадай'],p:['сыр айтады','білімге жол көрсетеді','жаңа әлемге жетелейді'],make:(d,c,p)=>`${cap(d)} кітап ${c} жақын болып, ${p}.`},
-{name:'МЕКТЕП',emoji:'🏫',d:['жарық','аяулы','сүйікті'],c:['ұядай','үлкен үйдей','шамшырақтай'],p:['балаларын қарсы алады','білімге шақырады','шәкірттерін қанаттандырады'],make:(d,c,p)=>`${cap(d)} мектеп ${c} ыстық болып, ${p}.`}
+
+{
+ name:'АЙ',
+ emoji:'🌙',
+
+ d:['күміс','сұлу','жарық'],
+
+ c:[
+  {word:'теңгедей', action:'жылтырап'},
+  {word:'табақтай', action:'дөңгеленіп'},
+  {word:'шамдай', action:'жарқырап'}
+ ],
+
+ p:[
+  'бұлт арасынан сығалады',
+  'түнгі аспанға күлімдейді',
+  'тыныш ауылды күзетеді'
+ ],
+
+ make:function(d,c,p){
+  return cap(d)+' ай '+c.action+', '+p+'.';
+ }
+},
+
+{
+ name:'БҰЛАҚ',
+ emoji:'💧',
+
+ d:['мөлдір','салқын','таза'],
+
+ c:[
+  {word:'айнадай', action:'жарқырап'},
+  {word:'күмістей', action:'жалтырап'},
+  {word:'жіптей', action:'ирелеңдеп'}
+ ],
+
+ p:[
+  'төменге қарай асығады',
+  'тастардың арасымен сыбырлап ағады',
+  'көңілді ән салып ағады'
+ ],
+
+ make:function(d,c,p){
+  return cap(d)+' бұлақ '+c.action+', '+p+'.';
+ }
+},
+
+{
+ name:'ЖАПЫРАҚ',
+ emoji:'🍂',
+
+ d:['нәзік','сары','қоңыр'],
+
+ c:[
+  {word:'көбелектей', action:'қалықтап'},
+  {word:'қайықтай', action:'тербеліп'},
+  {word:'алақандай', action:'жайылып'}
+ ],
+
+ p:[
+  'күзгі ауада билейді',
+  'ағашымен үнсіз қоштасады',
+  'жерге баяу қонады'
+ ],
+
+ make:function(d,c,p){
+  return cap(d)+' жапырақ '+c.word+' '+c.action+', '+p+'.';
+ }
+},
+
+{
+ name:'ГҮЛ',
+ emoji:'🌸',
+
+ d:['жұпар','нәзік','әсем'],
+
+ c:[
+  {word:'жұлдыздай', action:'жайнап'},
+  {word:'моншақтай', action:'тізіліп'},
+  {word:'шамдай', action:'жарқырап'}
+ ],
+
+ p:[
+  'таңғы күнге күлімдейді',
+  'самал желге бас изейді',
+  'таңмен бірге оянады'
+ ],
+
+ make:function(d,c,p){
+  return cap(d)+' гүл '+c.word+' '+c.action+', '+p+'.';
+ }
+},
+
+{
+ name:'КӨЛ',
+ emoji:'🌊',
+
+ d:['тынық','мөлдір','көгілдір'],
+
+ c:[
+  {word:'айнадай', action:'жарқырап'},
+  {word:'әйнектей', action:'мөлдіреп'},
+  {word:'күмістей', action:'жалтырап'}
+ ],
+
+ p:[
+  'көк аспанмен сырласады',
+  'күн сәулесін құшағына алады',
+  'жағалауға үнсіз сыр айтады'
+ ],
+
+ make:function(d,c,p){
+  return cap(d)+' көл '+c.word+' '+c.action+', '+p+'.';
+ }
+},
+
+{
+ name:'ДОМБЫРА',
+ emoji:'🎵',
+
+ d:['қоңыр үнді','киелі','көне'],
+
+ c:[
+  {word:'бұлақтай', action:'сыңғырлап'},
+  {word:'құстай', action:'әуезін қалықтатып'},
+  {word:'досындай', action:'сырласып'}
+ ],
+
+ p:[
+  'халқымыздың сырын шертеді',
+  'көңілге жылы ән сыйлайды',
+  'өткен тарихты сөйлетеді'
+ ],
+
+ make:function(d,c,p){
+  return cap(d)+' домбыра '+c.word+' '+c.action+', '+p+'.';
+ }
+},
+
+{
+ name:'КІТАП',
+ emoji:'📚',
+
+ d:['қызықты','дана','қымбат'],
+
+ c:[
+  {word:'досындай', action:'сырласып'},
+  {word:'шамшырақтай', action:'жол көрсетіп'},
+  {word:'қазынадай', action:'сырын ашып'}
+ ],
+
+ p:[
+  'оқырманға талай сыр айтады',
+  'білім әлеміне жетелейді',
+  'жаңа дүниелермен таныстырады'
+ ],
+
+ make:function(d,c,p){
+  return cap(d)+' кітап '+c.word+' '+c.action+', '+p+'.';
+ }
+},
+
+{
+ name:'МЕКТЕП',
+ emoji:'🏫',
+
+ d:['жарық','аяулы','сүйікті'],
+
+ c:[
+  {word:'ұядай', action:'жылуын сыйлап'},
+  {word:'үлкен үйдей', action:'құшағын ашып'},
+  {word:'шамшырақтай', action:'жол көрсетіп'}
+ ],
+
+ p:[
+  'балаларын қуана қарсы алады',
+  'шәкірттерін білімге шақырады',
+  'балалардың арманын қанаттандырады'
+ ],
+
+ make:function(d,c,p){
+  return cap(d)+' мектеп '+c.word+' '+c.action+', '+p+'.';
+ }
+}
+
 ];
 let obj=null,sd=null,sc=null,sp=null;
 function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
 function startThreeS(){showScreen('threeScreen');document.getElementById('builderArea').style.display='none';renderObjects()}
 function renderObjects(){const g=document.getElementById('objectGrid');g.innerHTML='';objects.forEach((o,i)=>{const b=document.createElement('button');b.className='objectButton';b.innerHTML=o.emoji+' '+o.name;b.onclick=()=>chooseObject(i,b);g.appendChild(b)})}
 function chooseObject(i,b){obj=objects[i];sd=sc=sp=null;document.querySelectorAll('.objectButton').forEach(x=>x.classList.remove('selected'));if(b)b.classList.add('selected');document.getElementById('builderArea').style.display='block';document.getElementById('bigObject').textContent=obj.emoji;document.getElementById('objectName').textContent=obj.name;renderChoices('describeChoices',obj.d,'d');renderChoices('compareChoices',obj.c,'c');renderChoices('personChoices',obj.p,'p');document.getElementById('sentenceResult').style.display='none'}
-function renderChoices(id,arr,type){const box=document.getElementById(id);box.innerHTML='';arr.forEach(t=>{const b=document.createElement('button');b.className='choice';b.textContent=t;b.onclick=()=>{box.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected'));b.classList.add('selected');if(type==='d')sd=t;if(type==='c')sc=t;if(type==='p')sp=t};box.appendChild(b)})}
-function buildSentence(){if(!obj||!sd||!sc||!sp){alert('Үш қадамның бәрінен жауап таңда!');return}document.getElementById('finalSentence').textContent=obj.make(sd,sc,sp);document.getElementById('sentenceResult').style.display='block'}
-function randomObject(){const i=Math.floor(Math.random()*objects.length);chooseObject(i,document.querySelectorAll('.objectButton')[i])}
+function renderChoices(id,arr,type){
+
+ const box=document.getElementById(id);
+ box.innerHTML='';
+
+ arr.forEach(item=>{
+
+  const b=document.createElement('button');
+  b.className='choice';
+
+  /* Егер бұл теңеу болса, экранда тек сөздің өзін көрсетеміз */
+  if(type==='c'){
+    b.textContent=item.word;
+  }else{
+    b.textContent=item;
+  }
+
+  b.onclick=()=>{
+
+    box.querySelectorAll('.choice').forEach(x=>{
+      x.classList.remove('selected');
+    });
+
+    b.classList.add('selected');
+
+    if(type==='d'){
+      sd=item;
+    }
+
+    if(type==='c'){
+      sc=item;
+    }
+
+    if(type==='p'){
+      sp=item;
+    }
+  };
+
+  box.appendChild(b);
+ });
+function buildSentence(){
+
+ if(!obj || !sd || !sc || !sp){
+
+   alert('🌟 Үш қадамның бәрінен бір жауап таңда!');
+   return;
+
+ }
+
+ const sentence=obj.make(sd,sc,sp);
+
+ document.getElementById('finalSentence').textContent=sentence;
+
+ document.getElementById('sentenceResult').style.display='block';
+
+ document.getElementById('sentenceResult').scrollIntoView({
+   behavior:'smooth',
+   block:'center'
+ });
+
+}function randomObject(){const i=Math.floor(Math.random()*objects.length);chooseObject(i,document.querySelectorAll('.objectButton')[i])}
 
 /* ЧЕМПИОНАТ */
 const champ=[
