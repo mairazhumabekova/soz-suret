@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>СөзСурет 1.0</title>
-<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=AJ0AcKYdgU2Jmcm4lQS0CV2TWSXyZWJj_5V6lWbEWkD4ViLFr3tDoSLpUTcwOVrxLLI2MvRE8iRHhKtJJ5YeP4yhz4mOyjb-qsR9lH9ZG7kkHg-7xaZUkXhtKx5OO4DZOaAkvDcK-8YBciHqpWydAF9Ug7HFvFrcEtAVLhMBtNrO2YppkIRCZoUutdx-Ch_3hzL991u3yAacCzW40eC6UbGZrzto14qOENkuMpAHrGaD4xsN9J-0JTiyX9M2N-2vOUzR8sbjVHMz8NZnjDyIx2_nlSiHWQcREBV7oxmKxbljHJUxASHDziYJuKBvRw_U9-BzKeotJ1NopbI99Ug-pg" charset="UTF-8"></script><style>
+<style>
 *{box-sizing:border-box} :root{--v:#6c4bd3;--ink:#27364b;--muted:#64748b;--line:#e5e7eb}
 body{margin:0;font-family:Arial,sans-serif;color:var(--ink);background:linear-gradient(#dff5ff,#fff7dc 52%,#e8ffdc);min-height:100vh}
 button,input,textarea{font:inherit}button{cursor:pointer}.page{max-width:600px;margin:auto;padding:18px 14px 55px}
@@ -28,11 +28,67 @@ input,textarea{width:100%;border:2px solid var(--line);border-radius:14px;paddin
 .aboutHero{background:linear-gradient(135deg,#e4d8ff,#dff5ff,#fff1a8);border-radius:25px;padding:21px;text-align:center}.dev{background:#f3efff;border-radius:19px;padding:17px;text-align:center}
 @media(max-width:430px){.choiceGrid,.stats{grid-template-columns:1fr}.hero h1{font-size:34px}}
 </style>
-</head>
+
+<style id="visual-upgrade">
+body{background:linear-gradient(160deg,#d7f5ff 0%,#fff1b8 45%,#ffd9ef 72%,#dfffd8 100%);background-size:180% 180%;animation:bgShift 12s ease infinite}
+@keyframes bgShift{0%,100%{background-position:0 50%}50%{background-position:100% 50%}}
+.sky{position:relative;animation:skyFloat 4s ease-in-out infinite}
+@keyframes skyFloat{50%{transform:translateY(-6px)}}
+.hero{position:relative;overflow:hidden}
+.hero:before{content:"☁️";position:absolute;left:-45px;top:10px;font-size:42px;opacity:.7;animation:cloud 13s linear infinite}
+.hero:after{content:"✨";position:absolute;right:18px;top:18px;font-size:30px;animation:twinkle 1.5s ease-in-out infinite alternate}
+@keyframes cloud{to{transform:translateX(690px)}}@keyframes twinkle{to{transform:scale(1.35) rotate(12deg);filter:brightness(1.2)}}
+.menu button,.obj,.choice,.ans,.main,.secondary{transition:.2s transform,.2s box-shadow,.2s filter}
+.menu button:hover,.obj:hover,.choice:hover,.ans:hover{transform:translateY(-3px) scale(1.01);box-shadow:0 12px 24px #0002;filter:saturate(1.12)}
+.menu button:active,.obj:active,.choice:active,.ans:active,.main:active,.secondary:active{transform:scale(.96)}
+.scene,.emoji{animation:softFloat 3s ease-in-out infinite}@keyframes softFloat{50%{transform:translateY(-8px) rotate(2deg)}}
+.fxPop{animation:fxPop .45s ease both}@keyframes fxPop{from{transform:scale(.72);opacity:0}to{transform:scale(1);opacity:1}}
+.shakeSoft{animation:shakeSoft .35s ease}@keyframes shakeSoft{25%{transform:translateX(-5px)}50%{transform:translateX(5px)}75%{transform:translateX(-3px)}}
+.spark{position:fixed;z-index:9999;pointer-events:none;font-size:21px;animation:sparkFly .9s ease-out forwards}
+@keyframes sparkFly{to{transform:translate(var(--dx),var(--dy)) rotate(200deg) scale(.2);opacity:0}}
+#dailyMystery{background:linear-gradient(135deg,#ffe89d,#ffd7ed,#d9edff);border:2px dashed #8b6bdc}
+#transformLab{background:linear-gradient(135deg,#fff,#fff7d7);border:2px solid #f2d65c}
+.transformStep{padding:12px;border-radius:15px;background:#fff;margin:8px 0;opacity:.45;transition:.35s}
+.transformStep.on{opacity:1;transform:scale(1.02);box-shadow:0 7px 16px #0001}
+.achievementShelf{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.achievement{padding:11px;border-radius:15px;background:#f8fafc;text-align:center}.achievement.locked{filter:grayscale(1);opacity:.45}
+.streakPill{position:sticky;top:8px;z-index:20;display:inline-block;background:#fff3c4;padding:7px 11px;border-radius:16px;font-weight:700;box-shadow:0 4px 10px #0001}
+
+</style>
+<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#6c4bd3"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="СөзСурет"><link rel="apple-touch-icon" href="icons/icon-192.png"></head>
 <body><main class="page">
 
 <section id="home" class="screen active">
 <div class="sky">☀️ ☁️ 🌈</div><div class="hero"><div>✨ 📖 ✨</div><h1>СӨЗСУРЕТ</h1><b>«Суретші бояумен,<br>ақын сөзбен сурет салады!»</b><br><span class="tag">👧🧒 Бастауыш сынып оқушыларына арналған</span></div>
+
+<b>«СөзСуретті» телефонға орнат</b><p>Басты экраннан қолданба сияқты ашылады.</p><button id="installBtn" class="main">📲 Орнату</button><div id="iosHelp" style="display:none;font-size:13px">iPhone: Safari → Бөлісу → Басты экранға қосу</div></div>
+<div id="transformLab" class="card center">
+<div style="font-size:38px">🪄✨</div>
+<h3>ҚАРАПАЙЫМНАН КӨРКЕМГЕ</h3>
+<p>Сөйлемнің біртіндеп қалай әдеміленетінін байқап көр.</p>
+
+<div id="beautyScene" style="position:relative;overflow:hidden;border-radius:22px;background:linear-gradient(#eef5ff,#fff);padding:24px 12px;margin:14px 0;min-height:170px">
+<div id="beautyCloudL" style="position:absolute;left:14%;top:24px;font-size:38px;transition:1s">☁️</div>
+<div id="beautyMoon" style="font-size:54px;opacity:.35;transition:.8s;transform:scale(.85)">🌙</div>
+<div id="beautyCloudR" style="position:absolute;right:14%;top:24px;font-size:38px;transition:1s">☁️</div>
+<div id="beautyStars" style="font-size:22px;opacity:0;transition:.8s">✨　⭐　✨</div>
+<div id="beautySentence" style="font-size:22px;font-weight:700;line-height:1.55;margin-top:12px">Ай шықты.</div>
+</div>
+
+<div id="beautyPrompt" style="font-weight:700;margin:12px 0">Бұл сөйлемді мұнан да әдемі еткіміз келе ме?</div>
+<button id="beautyBtn" class="main" onclick="beautifyNext()">✨ ИӘ!</button>
+
+<div id="beautyCompare" style="display:none;margin-top:18px">
+<h3>👀 БАЙҚАДЫҢ БА?</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:9px;text-align:left">
+<div style="background:#f3f4f6;border-radius:16px;padding:13px"><small>БАСЫНДА</small><br><b>Ай шықты.</b></div>
+<div style="background:#fff1b8;border-radius:16px;padding:13px"><small>ҚАЗІР</small><br><b>Күміс ай теңгедей жылтырап, бұлттардың арасынан сығалады.</b></div>
+</div>
+<p style="line-height:1.6"><b>Алғашқы сөйлемді түсіндік.<br>Соңғы сөйлемді көз алдымызға елестеттік.</b></p>
+<h3>🌈 Бірнеше сөз сөйлемді қалай өзгертті?</h3><p><b>Енді осы әдеміліктің құпиясын бірге үйренейік!</b></p>
+<button class="main" onclick="show('learn')">📖 Көркем сөздің құпиясын үйренемін!</button>
+<br><br><button class="secondary" onclick="resetBeautify()">🔄 Қайта көру</button>
+</div>
+</div>
 <div class="menu">
 <button class="learn" onclick="show('learn')">📖 ҮЙРЕНЕМІН<small>Эпитет, теңеу, кейіптеудің сырын аш</small></button>
 <button class="find" onclick="startFind()">🔎 КӨРКЕМ СӨЗДІ ТАП<small>10 тапсырма және жеке нәтиже</small></button>
@@ -42,7 +98,10 @@ input,textarea{width:100%;border:2px solid var(--line);border-radius:14px;paddin
 <button class="bag" onclick="openBag()">🎒 МЕНІҢ ҚОРЖЫНЫМ<small>Шығармашылық портфолио</small></button>
 </div>
 <div class="card center" style="margin-top:18px"><b style="color:var(--v)">🪶 3С әдісі</b><p><b>🎨 СИПАТТА → 🔎 САЛЫСТЫР → 💬 СӨЙЛЕТ</b></p></div>
-<div class="footer">© 2026 «СөзСурет»<br>Авторлық цифрлық оқу құралы<br><button class="link" onclick="show('about')">ℹ️ СөзСурет туралы</button></div>
+<div class="footer">© 2026 «СөзСурет»<br>Авторлық цифрлық оқу құралы<br>
+<button id="installBtn" class="link">📱 Құрылғыға орнату</button><br>
+<div id="iosHelp" style="display:none;font-size:12px;line-height:1.5;margin:5px auto;max-width:330px">iPhone: Safari → <b>Бөлісу</b> → <b>Басты экранға қосу</b></div>
+<button class="link" onclick="show('about')">ℹ️ СөзСурет туралы</button></div>
 </section>
 
 <section id="learn" class="screen">
@@ -107,11 +166,11 @@ input,textarea{width:100%;border:2px solid var(--line);border-radius:14px;paddin
 
 <section id="creator" class="screen"><div class="top"><button class="back" onclick="show('home')">←</button><div class="title"><h2>✍️ МЕН — СӨЗ СУРЕТШІСІМІН</h2><p>Соңғы сөйлемнің авторы — өзің</p></div></div><div class="inspire"><b>👁️ ҚИЯЛ ТЕРЕЗЕСІ</b><div id="ie" class="emoji"></div><div id="iw" class="word"></div><p id="ip"></p><button class="secondary" onclick="newIdea()">🎲 Басқа тақырып</button></div><div class="box"><span class="step">1С</span><h3>🎨 СИПАТТА</h3><p id="idq"></p><input id="id" placeholder="Өз ойыңды жаз..."></div><div class="box"><span class="step">2С</span><h3>🔎 САЛЫСТЫР</h3><p id="icq"></p><input id="ic" placeholder="Өз теңеуіңді ойла..."></div><div class="box"><span class="step">3С</span><h3>💬 СӨЙЛЕТ</h3><p id="ipq"></p><input id="ipers" placeholder="Бейнеге жан бітір..."></div><div class="center"><button class="secondary" onclick="hint()">💡 Ойлануға көмек</button></div><div id="hint" class="hint"></div><div class="center" style="margin:16px"><button class="main" onclick="workshop()">🧩 Сөйлем шеберханасына өту</button></div><div id="work" style="display:none"><div class="card pink"><h3>🔍 ОЙЫҢДЫ ТЕКСЕР</h3><div id="ideas" class="example"></div><p><b>Осы үш ойыңды қатыстырып, бір көркем сөйлемді өзің жаз.</b></p><textarea id="ownSentence" placeholder="Менің көркем сөйлемім..."></textarea><div class="traffic"><div>🟢 🎨 Сипаттау қадамын орындадым</div><div>🟢 🔎 Салыстыру қадамын орындадым</div><div>🟢 💬 Жан бітіру қадамын орындадым</div></div><small>Бұл белгілер үш қадамның орындалғанын көрсетеді. Олар грамматиканы автоматты түрде бағаламайды.</small><br><br><button class="main" onclick="saveOwn()">🎒 Қоржынға сақтау</button></div></div></section>
 
-<section id="bag" class="screen"><div class="top"><button class="back" onclick="show('home')">←</button><div class="title"><h2>🎒 МЕНІҢ ҚОРЖЫНЫМ</h2><p>Шығармашылық цифрлық портфолио</p></div></div><div class="card center"><div style="font-size:52px">🎒✨</div><span id="bagCount" class="tag"></span></div><div id="bagList"></div><div class="center"><button class="main" onclick="startCreator()">✍️ Жаңа сөйлем жасау</button></div></section>
+<section id="bag" class="screen"><div class="top"><button class="back" onclick="show('home')">←</button><div class="title"><h2>🎒 МЕНІҢ ҚОРЖЫНЫМ</h2><p>Шығармашылық цифрлық портфолио</p></div></div><div class="card center"><div style="font-size:52px">🎒✨</div><span id="bagCount" class="tag"></span></div><div class="card"><h3 class="center">🏆 ЖЕТІСТІК СӨРЕСІ</h3><div id="achievementShelf" class="achievementShelf"></div></div><div id="bagList"></div><div class="center"><button class="main" onclick="startCreator()">✍️ Жаңа сөйлем жасау</button></div></section>
 
 <section id="about" class="screen"><div class="top"><button class="back" onclick="show('home')">←</button><div class="title"><h2>🎨 «СөзСурет» туралы</h2><p>Интерактивті цифрлық оқу құралы</p></div></div><div class="aboutHero"><div style="font-size:50px">🎨📖✨</div><h2>«СөзСурет»</h2><p>«СөзСурет» — бастауыш сынып оқушыларына көркем сөздің сырын түсінуге, эпитет, теңеу және кейіптеуді ажыратуға, олардың мәтіндегі қызметін түсінуге және өз сөйлемдерінде шығармашылықпен қолдануға көмектесетін интерактивті цифрлық оқу құралы.</p></div><div class="card purple"><h3>🪶 3С әдісі</h3><h3 class="center">Сипатта → Салыстыр → Сөйлет</h3><p>🎨 <b>Сипатта</b> — бейнелі белгіні тап.<br>🔎 <b>Салыстыр</b> — ұқсастық жаса.<br>💬 <b>Сөйлет</b> — бейнеге жан бітір.</p></div><div class="card yellow"><h3>🎯 Негізгі мақсаты</h3><p>Балаға көркемдегіш құралдардың анықтамасын жаттатумен шектелмей, оларды:</p><p class="center"><b>тануға → түсіндіруге → қолдануға → талдауға → өздігінен көркем сөйлем жасауға</b></p><p>үйрету.</p></div><div class="dev"><div style="font-size:48px">👩‍🏫</div><h3>Әзірлеуші</h3><b>Жұмабекова Майра Мырзаханқызы</b><p>бастауыш сынып мұғалімі,<br>педагогика ғылымдарының магистрі</p></div><div class="card green"><h3>🌟 «СөзСурет» мүмкіндіктері</h3><p>📖 Көркемдегіш құралдарды үйрену<br>🔎 Эпитет, теңеу, кейіптеуді ажырату<br>✨ «3С» арқылы көркем сөйлем құрастыру<br>🧠 Өз жауабын талдау және дәлелдеу<br>✍️ Авторлық сөйлем жасау<br>🎒 Шығармашылық қоржын жинау<br>🏆 Жеке нәтижені көру</p></div><div class="card blue"><h3>🔐 Құпиялық</h3><p>«СөзСурет» пайдаланушыдан аты-жөні, телефон нөмірі, электрондық пошта немесе басқа жеке деректерді сұрамайды.</p></div><div class="card center"><h3>💻 Нұсқа</h3><b>«СөзСурет» 1.0 • 2026</b><br><br><button class="main" onclick="show('home')">🏠 Басты бетке қайту</button></div></section>
 
-</main>
+<div class="bottomNav"><button onclick="show('home')" title="Басты бет">🏠</button><button onclick="start3S()" title="3С">✨</button><button onclick="startQuiz()" title="Сынақ">🏆</button><button onclick="startCreator()" title="Жазу">✍️</button><button onclick="openBag()" title="Қоржын">🎒</button></div></main>
 <script>
 function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');scrollTo(0,0)}
 function learnAns(b,ok,id,msg){b.parentElement.querySelectorAll('button').forEach(x=>{x.style.background='#fff';x.style.borderColor='#e5e7eb'});b.style.background=ok?'#dcfce7':'#fee2e2';document.getElementById(id).innerHTML=(ok?'<span class="ok">🌟 Дұрыс!</span> ':'<span class="no">😊 Тағы ойлан.</span> ')+msg}
@@ -354,4 +413,139 @@ function saveItem(x){let b=getBag();b.unshift(x);localStorage.setItem('sozSuretF
 function openBag(){show('bag');renderBag()}
 function renderBag(){let b=getBag();bagCount.textContent='Қоржынымда: '+b.length+' жұмыс';bagList.innerHTML='';if(!b.length){bagList.innerHTML='<div class="card center"><div style="font-size:58px">🎒</div><h3>Қоржының әзірге бос</h3><p>3С немесе шығармашылық бөлімінде алғашқы жұмысыңды жаса.</p></div>';return}b.forEach((x,i)=>{let d=document.createElement('div');d.className='item';d.innerHTML='<div class="meta"><b>'+x.emoji+' '+x.topic+'</b> • '+x.kind+(x.d?'<br>🎨 '+x.d:'')+(x.c?'<br>🔎 '+x.c:'')+(x.p?'<br>💬 '+x.p:'')+'</div><div class="final">✨ '+x.sentence+'</div><br><button class="delete" onclick="delBag('+i+')">🗑️ Өшіру</button>';bagList.appendChild(d)})}
 function delBag(i){let b=getBag();b.splice(i,1);localStorage.setItem('sozSuretFinal1',JSON.stringify(b));renderBag()}
-</script></body></html>
+</script>
+<script id="visual-js">
+let deferredInstallPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e});
+const installBtn=document.getElementById('installBtn');
+const iosHelp=document.getElementById('iosHelp');
+if(window.matchMedia('(display-mode: standalone)').matches && installBtn) installBtn.style.display='none';
+if(installBtn) installBtn.addEventListener('click',async()=>{
+ if(deferredInstallPrompt){
+   deferredInstallPrompt.prompt();
+   await deferredInstallPrompt.userChoice;
+   deferredInstallPrompt=null;
+ }else if(/iphone|ipad|ipod/i.test(navigator.userAgent)){
+   iosHelp.style.display='block';
+ }else{
+   alert('📱 Браузер мәзірінен «Орнату» немесе «Басты экранға қосу» пәрменін таңда.');
+ }
+});
+});
+if(/iphone|ipad|ipod/i.test(navigator.userAgent))document.getElementById('iosHelp').style.display='block';
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+
+function celebrate(n=16){
+ const a=['✨','⭐','🌟','🎨','💫'];
+ for(let i=0;i<n;i++){let s=document.createElement('span');s.className='spark';s.textContent=a[i%a.length];
+ s.style.left=(48+Math.random()*4)+'vw';s.style.top=(45+Math.random()*6)+'vh';
+ s.style.setProperty('--dx',((Math.random()-.5)*330)+'px');s.style.setProperty('--dy',((Math.random()-.5)*270)+'px');
+ document.body.appendChild(s);setTimeout(()=>s.remove(),950)}
+}
+
+
+let beautyStep=0;
+
+
+let streak=0;
+document.addEventListener('click',e=>{
+ const b=e.target.closest('button');if(!b)return;
+ if((b.style.background||'').includes('dcfce7'))celebrate(8);
+});
+function unlockAchievements(){
+ const bag=typeof getBag==='function'?getBag():[];
+ const defs=[['🎨','Эпитет іздеуші',bag.length>=1],['🔎','Теңеу тапқыр',bag.length>=2],['💬','Кейіптеу шебері',bag.length>=3],['👑','Сөз суретшісі',bag.length>=5]];
+ const sh=document.getElementById('achievementShelf');if(!sh)return;sh.innerHTML='';
+ defs.forEach(x=>{let d=document.createElement('div');d.className='achievement'+(x[2]?'':' locked');d.innerHTML='<div style="font-size:30px">'+x[0]+'</div><b>'+x[1]+'</b><br><small>'+(x[2]?'Ашылды ✓':'Құлыптаулы 🔒')+'</small>';sh.appendChild(d)})
+}
+const oldOpenBag=window.openBag;
+if(oldOpenBag)window.openBag=function(){oldOpenBag();unlockAchievements()};
+
+const oldSaveItem=window.saveItem;
+if(oldSaveItem)window.saveItem=function(x){oldSaveItem(x);celebrate(14)};
+
+const oldShowQuizResult=window.nextQuiz;
+let lastQuizScore=0;
+// Observe quiz result screen; reveal secret certificate on perfect score.
+const observer=new MutationObserver(()=>{
+ const res=document.getElementById('quizResult');
+ if(res&&res.classList.contains('active')){
+  const score=document.getElementById('qscore')?.textContent||'';
+  if(score.startsWith('10/10')&&!document.getElementById('secretCertificate')){
+   let c=document.createElement('div');c.id='secretCertificate';c.className='certificate';c.innerHTML='<div style="font-size:58px">👑✨</div><h2>КӨРКЕМ СӨЗ ШЕБЕРІ</h2><h3>10/10 ⭐</h3><p><b>«Мен сөзді таныдым, бейнені көрдім, сөзбен сурет салдым!»</b></p>';
+   res.querySelector('.result')?.appendChild(c);celebrate(30)
+  }
+ }
+});
+observer.observe(document.body,{attributes:true,subtree:true,attributeFilter:['class']});
+</script>
+
+<script id="beautify-fixed">
+(function(){
+  let step = 0;
+
+  window.beautifyNext = function(){
+    const sentence = document.getElementById('beautySentence');
+    const prompt = document.getElementById('beautyPrompt');
+    const btn = document.getElementById('beautyBtn');
+    const moon = document.getElementById('beautyMoon');
+    const stars = document.getElementById('beautyStars');
+    const cloudL = document.getElementById('beautyCloudL');
+    const cloudR = document.getElementById('beautyCloudR');
+    const compare = document.getElementById('beautyCompare');
+
+    if(!sentence || !prompt || !btn) return;
+
+    step += 1;
+    sentence.classList.remove('fxPop');
+    void sentence.offsetWidth;
+    sentence.classList.add('fxPop');
+
+    if(step === 1){
+      sentence.textContent = 'Күміс ай шықты.';
+      if(moon){ moon.style.opacity = '.7'; moon.style.transform = 'scale(1)'; }
+      prompt.textContent = 'Сөйлемді тағы да әдемілейік пе?';
+      btn.textContent = '🌟 ИӘ!';
+    } else if(step === 2){
+      sentence.textContent = 'Күміс ай теңгедей жылтырады.';
+      if(moon){ moon.style.opacity = '1'; moon.style.transform = 'scale(1.05)'; }
+      if(stars) stars.style.opacity = '1';
+      prompt.textContent = 'Осы көрініске жан бітірсек ше?';
+      btn.textContent = '💫 ИӘ!';
+    } else {
+      sentence.textContent = 'Күміс ай теңгедей жылтырап, бұлттардың арасынан сығалады.';
+      if(moon){ moon.style.opacity = '1'; moon.style.transform = 'scale(1.14)'; }
+      if(stars) stars.style.opacity = '1';
+      if(cloudL) cloudL.style.transform = 'translateX(-45px)';
+      if(cloudR) cloudR.style.transform = 'translateX(45px)';
+      prompt.style.display = 'none';
+      btn.style.display = 'none';
+      if(compare) compare.style.display = 'block';
+      if(typeof window.celebrate === 'function') window.celebrate(22);
+    }
+  };
+
+  window.resetBeautify = function(){
+    step = 0;
+    const sentence = document.getElementById('beautySentence');
+    const prompt = document.getElementById('beautyPrompt');
+    const btn = document.getElementById('beautyBtn');
+    const moon = document.getElementById('beautyMoon');
+    const stars = document.getElementById('beautyStars');
+    const cloudL = document.getElementById('beautyCloudL');
+    const cloudR = document.getElementById('beautyCloudR');
+    const compare = document.getElementById('beautyCompare');
+
+    if(sentence) sentence.textContent = 'Ай шықты.';
+    if(prompt){ prompt.textContent = 'Бұл сөйлемді мұнан да әдемі еткіміз келе ме?'; prompt.style.display = 'block'; }
+    if(btn){ btn.textContent = '✨ ИӘ!'; btn.style.display = 'inline-block'; }
+    if(compare) compare.style.display = 'none';
+    if(moon){ moon.style.opacity = '.35'; moon.style.transform = 'scale(.85)'; }
+    if(stars) stars.style.opacity = '0';
+    if(cloudL) cloudL.style.transform = 'translateX(0)';
+    if(cloudR) cloudR.style.transform = 'translateX(0)';
+  };
+})();
+</script>
+
+</body></html>
